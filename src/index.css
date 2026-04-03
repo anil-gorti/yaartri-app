@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap');
+
+:root {
+  --primary: #2e3192; /* The exact Stitch Deep Indigo/Blue */
+  --primary-light: #4f46e5;
+  --bg-color: #f7f9fc;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --accent: #1bd09a; /* Bright teal/green accent for trust/verification */
+  --saffron: #ff6b35; /* Crisp energetic orange */
+  --danger: #ef4444;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 10px 20px rgba(0,0,0,0.06);
+  --shadow-lg: 0 25px 50px -12px rgba(0,0,0,0.15);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #e2e8f0; /* Outer canvas */
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Premium Mobile Frame */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 390px;
+  height: 844px; /* iPhone 14 Pro dims */
+  background-color: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.3);
+  border-radius: 40px;
+  border: 12px solid #ffffff; /* Phone bezel */
+}
+
+/* Inner App Scroll Area */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 90px 24px 100px 24px;
+  scrollbar-width: none; /* Hide scrollbar */
+}
+.main-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  margin-top: 0;
+  font-family: 'Outfit', sans-serif;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Base Card Styling */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Action Cards - The heart of Sarthi Proposals */
+.action-card {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.action-card p {
+  color: #334155;
+}
+
+/* Sarthi Top HUD */
+.navigator-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 30px 24px 10px; /* Account for top notch */
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.agent-branding {
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0;
+  animation: fade-in-status 0.5s forwards;
+}
+
+@keyframes fade-in-status {
+  to { opacity: 1; }
+}
+
+.thinking-ring {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--saffron);
+  animation: pulse-saffron 1.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.6);
+}
+
+@keyframes pulse-saffron {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Floating Bottom Navigation */
+.bottom-nav {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  height: 70px;
+  background-color: #1e1e1e; /* Elite dark mode bottom bar */
+  border-radius: 35px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  z-index: 50;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #71717a;
+  font-size: 11px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 10px;
+}
+
+.nav-item.active {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.nav-icon {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+.nav-item.active .nav-icon {
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+}
+
+/* Premium Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, #1e1b4b 100%);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 16px 24px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 8px 16px rgba(46, 49, 146, 0.3);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 8px rgba(46, 49, 146, 0.2);
+}
+
+.btn-secondary {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border: none;
+  border-radius: 100px;
+  padding: 16px 24px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.btn-secondary:active {
+  background-color: #e2e8f0;
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* Beautiful Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(90deg, rgba(27, 208, 154, 0.15) 0%, rgba(27, 208, 154, 0.05) 100%);
+  color: var(--accent);
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.badge.saffron {
+  background: linear-gradient(90deg, rgba(255, 107, 53, 0.15) 0%, rgba(255, 107, 53, 0.05) 100%);
+  color: var(--saffron);
+}
+
+/* Aesthetic Radar */
+.radar-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radar-pulse-1, .radar-pulse-2 {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(46, 49, 146, 0.3);
+  animation: radar-sweep 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+.radar-pulse-2 {
+  animation-delay: 2s;
+}
+
+@keyframes radar-sweep {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.radar-core {
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 0 20px rgba(46, 49, 146, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Identity Lock Ring */
+.lock-ring {
+  width: 80px; 
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+  background: conic-gradient(from 180deg at 50% 50%, #1bd09a 0deg, #1e1b4b 360deg);
+  padding: 4px;
+}
+.lock-ring-inner {
+  background: var(--bg-color);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Universal Page transitions */
+.page-transition {
+  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
