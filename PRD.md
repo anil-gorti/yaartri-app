@@ -1,4 +1,4 @@
-# Sarthi: The Agentic Social Shield
+# Yaartri: The Agentic Social Shield
 **Product Requirements Document (PRD) & Launch Strategy**
 *Status: Signed Off*
 
@@ -8,9 +8,9 @@
 **The Moat (The Veblen Effect of Trust):** We unapologetically require Aadhaar-Lite verification and enforce a Ghosting Penalty. We are building the highest-accountability marketplace in travel.
 
 ## 2. Core Agentic Framework (The Navigator)
-Sarthi replaces the manual "feed" with a Consent-Gated Probabilistic State Machine.
+Yaartri replaces the manual "feed" with a Consent-Gated Probabilistic State Machine.
 
-*   **Opt-In Discovery:** The Agent remains dormant until "Active Sarthi" is toggled by the user.
+*   **Opt-In Discovery:** The Agent remains dormant until "Active Yaartri" is toggled by the user.
 *   **Proactive Proposals:** Instead of browsing, the Agent analyzes "Bucket-List Density" (e.g., Varanasi Aarti) and proposes "Verified Squads" for cost-sharing and safety.
 *   **Logistics Co-Pilot:** The Agent actively monitors geofences. It broadcasts transparent ETAs and handles post-activity Smart-Split (UPI) intents seamlessly.
 *   **The Scam-Shield Heuristics:** NLP flags commission-trap keywords ("factory," "uncle's shop") and geofences redirect users away from "Closed Monument" tout traps.
@@ -30,8 +30,8 @@ Sarthi replaces the manual "feed" with a Consent-Gated Probabilistic State Machi
 *   **Month 3 (The Pilot):** Onboard 10 "Safe-Hub" B2B cafes. Run closed beta with 100 verified "Marathoner/Product" users.
 
 ## 5. Monetization Strategy
-*   **Sarthi Shield (B2C Premium):** Priority Agent monitoring & zero-liability guarantees.
-*   **Safe-Hub Certification (B2B):** Verified hospitality venues pay for Sarthi routing.
+*   **Yaartri Shield (B2C Premium):** Priority Agent monitoring & zero-liability guarantees.
+*   **Safe-Hub Certification (B2B):** Verified hospitality venues pay for Yaartri routing.
 
 ---
 *“We are building the Operating System for Human Trust. Hard to join, impossible to leave.”*

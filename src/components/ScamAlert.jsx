@@ -20,7 +20,7 @@ export default function ScamAlert() {
           <span>{scamAlert.type}</span>
         </div>
 
-        <h2 className="scam-title">Sarthi Shield Alert</h2>
+        <h2 className="scam-title">Yaartri Shield Alert</h2>
         <p className="scam-message">{scamAlert.text}</p>
 
         {scamAlert.action && (

@@ -11,7 +11,7 @@ export const Schema = {
     is_aadhaar_verified: "Boolean", // The "Asli" Rule
     aadhaar_hash: "String", // Zero-knowledge proof hash of identity
     name: "String",
-    gender: "String", // Used for Sarthi to run Safe-Hub logic
+    gender: "String", // Used for Yaartri to run Safe-Hub logic
     dob: "Date",
     yaar_score: "Float", // Starts at 100
     punctuality_streak: "Integer",
@@ -32,7 +32,7 @@ export const Schema = {
   },
 
   // Physical locations that hold high-trust weight
-  Sarthi_Safe_Hub: {
+  Yaartri_Safe_Hub: {
     id: "UUID",
     name: "String",
     category: "String", // 'Govt_Emporium', 'Verified_Cafe', 'Transport_Hub'

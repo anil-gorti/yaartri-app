@@ -4,11 +4,11 @@
  */
 
 // Simulated Mock Data for Varanasi and Udaipur phase 1 hubs
-const SARTHI_SAFE_HUBS = [
+const YAARTRI_SAFE_HUBS = [
   {
     id: "hub_varanasi_01",
     city: "Varanasi",
-    name: "Dashashwamedh Ghat Sarthi Zone",
+    name: "Dashashwamedh Ghat Yaartri Zone",
     category: "Verified_Monument",
     coordinates: { lat: 25.3060, lng: 83.0100 },
     radiusMeters: 500, // Valid 500m geofence 
@@ -17,7 +17,7 @@ const SARTHI_SAFE_HUBS = [
   {
     id: "hub_varanasi_cafe1",
     city: "Varanasi",
-    name: "Brown Bread Bakery (Sarthi Certified Table)",
+    name: "Brown Bread Bakery (Yaartri Certified Table)",
     category: "Verified_Cafe",
     coordinates: { lat: 25.3082, lng: 83.0076 },
     radiusMeters: 50,
@@ -37,14 +37,14 @@ const SARTHI_SAFE_HUBS = [
 export class GeoPulse {
   
   /**
-   * Retrieves all active Sarthi-Certified Safe-Hubs in a specific city
+   * Retrieves all active Yaartri-Certified Safe-Hubs in a specific city
    * @param {string} city 
    */
   static async getSafeHubsForCity(city) {
     console.log(`[GeoPulse] Fetching Safe-Hubs for ${city}...`);
     // Simulated DB query latency
     await new Promise(resolve => setTimeout(resolve, 300));
-    return SARTHI_SAFE_HUBS.filter(hub => hub.city.toLowerCase() === city.toLowerCase() && hub.is_active);
+    return YAARTRI_SAFE_HUBS.filter(hub => hub.city.toLowerCase() === city.toLowerCase() && hub.is_active);
   }
 
   /**

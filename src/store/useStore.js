@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { GeoPulse } from '../services/geoPulseService';
 import { IdentityService } from '../services/identityService';
-import { SarthiAgent } from '../agents/SarthiAgent';
+import { YaartriAgent } from '../agents/YaartriAgent';
 
 const MOCK_SQUADS = [
   {
@@ -129,7 +129,7 @@ export const useStore = create((set, get) => ({
   },
 
   initAgent: () => {
-    const agent = new SarthiAgent(get().user.id);
+    const agent = new YaartriAgent(get().user.id);
     agent.activateRadar();
     set({ agent });
   },

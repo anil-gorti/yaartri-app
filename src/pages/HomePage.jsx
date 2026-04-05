@@ -18,14 +18,14 @@ import 'leaflet/dist/leaflet.css';
 
 const shieldIcon = new L.DivIcon({
   html: '<div class="map-marker-hub"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00FFC2" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>',
-  className: 'sarthi-marker',
+  className: 'yaartri-marker',
   iconSize: [28, 28],
   iconAnchor: [14, 14],
 });
 
 const squadIcon = new L.DivIcon({
   html: '<div class="map-marker-squad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>',
-  className: 'sarthi-marker',
+  className: 'yaartri-marker',
   iconSize: [24, 24],
   iconAnchor: [12, 12],
 });
@@ -51,7 +51,7 @@ export default function HomePage() {
   const handleDemoScamAlert = () => {
     triggerScamAlert({
       type: 'Route Deviation',
-      text: 'Your driver has deviated 25% from the optimal route to Kashi Vishwanath. This matches a known commission-trap pattern. Sarthi has flagged the correct route.',
+      text: 'Your driver has deviated 25% from the optimal route to Kashi Vishwanath. This matches a known commission-trap pattern. Yaartri has flagged the correct route.',
       actionLabel: 'View Safe Route',
       action: () => {},
     });
@@ -112,7 +112,7 @@ export default function HomePage() {
           <div className="map-top-bar fade-in">
             <div className="map-top-left">
               <Icons.Shield width="14" height="14" style={{ color: 'var(--accent-mint)' }} />
-              <span className="map-brand">Sarthi</span>
+              <span className="map-brand">Yaartri</span>
             </div>
             <Badge variant="outline">{currentCity}</Badge>
           </div>

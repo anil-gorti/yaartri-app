@@ -1,20 +1,20 @@
 /**
- * Sarthi Navigator Agent Core
+ * Yaartri Navigator Agent Core
  * Implements the Antigravity Agent framework logic.
  */
 
-export class SarthiAgent {
+export class YaartriAgent {
   constructor(userId) {
     this.userId = userId;
     this.isActive = false; // Consent-Gated Architecture
   }
 
   /**
-   * User opts-in to the Sarthi Radar
+   * User opts-in to the Yaartri Radar
    */
   activateRadar() {
     this.isActive = true;
-    console.log(`Sarthi Radar Active for ${this.userId}`);
+    console.log(`Yaartri Radar Active for ${this.userId}`);
   }
 
   /**
@@ -25,10 +25,10 @@ export class SarthiAgent {
 
     // Pseudo-logic for deviation check
     const deviation = this._calculateDeviation(currentCoords, targetMonumentId);
-    
+
     if (deviation > 20.0) { // e.g. 20% deviation from optimal path
       return this._triggerScamWarning(
-        "Taxi Redirect", 
+        "Taxi Redirect",
         "Your driver is taking a detour. I have marked the correct route on your screen."
       );
     }
@@ -37,16 +37,16 @@ export class SarthiAgent {
   }
 
   /**
-   * Checks chat intent for Sarthi guideline breaches.
+   * Checks chat intent for Yaartri guideline breaches.
    */
   analyzeSentiment(chatPayload) {
     const commissionKeywords = ["uncle", "factory", "wholesale", "export", "cheap gems"];
-    
+
     for (let word of commissionKeywords) {
       if (chatPayload.toLowerCase().includes(word)) {
         return this._triggerScamWarning(
           "Commission Trap",
-          "Fraud Sentinel: High probability of a commission trap. Sarthi verified Yaars do not push isolated factory visits."
+          "Fraud Sentinel: High probability of a commission trap. Yaartri verified Yaars do not push isolated factory visits."
         );
       }
     }
@@ -56,7 +56,7 @@ export class SarthiAgent {
    * Applies the Anti-Ghosting Law
    */
   applyGhostingPenalty() {
-    console.log(`[Agent Action] Ghosting penalty applied to ${this.userId}. Yaar-Score -15 points.`);
+    console.log(`[Agent Action] Ghosting penalty applied to ${this.userId}. Yaar Score -15 points.`);
     // DB.Yaartri_User.decrement(this.userId, 'yaar_score', 15);
   }
 
@@ -68,7 +68,7 @@ export class SarthiAgent {
   }
 
   _triggerScamWarning(type, alertText) {
-    console.warn(`[SARTHI ALERT: ${type}] ${alertText}`);
+    console.warn(`[YAARTRI ALERT: ${type}] ${alertText}`);
     return { alert: true, text: alertText };
   }
 }

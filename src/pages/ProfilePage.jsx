@@ -44,7 +44,7 @@ export default function ProfilePage() {
         </div>
 
         <div className="detail-section slide-up" style={{ animationDelay: '0.12s' }}>
-          <h3 className="detail-section-title">Sarthi Principles</h3>
+          <h3 className="detail-section-title">Yaartri Principles</h3>
           <div className="principles-list">
             {[
               { text: 'Respect the RSVP', desc: 'Anti-Ghosting Law' },

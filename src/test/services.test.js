@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { GeoPulse } from '../services/geoPulseService';
 import { IdentityService } from '../services/identityService';
-import { SarthiAgent } from '../agents/SarthiAgent';
+import { YaartriAgent } from '../agents/YaartriAgent';
 
 describe('GeoPulse', () => {
   it('fetches safe hubs for Varanasi', async () => {
@@ -57,27 +57,27 @@ describe('IdentityService', () => {
   });
 });
 
-describe('SarthiAgent', () => {
+describe('YaartriAgent', () => {
   it('starts inactive', () => {
-    const agent = new SarthiAgent('user_001');
+    const agent = new YaartriAgent('user_001');
     expect(agent.isActive).toBe(false);
   });
 
   it('activates radar', () => {
-    const agent = new SarthiAgent('user_001');
+    const agent = new YaartriAgent('user_001');
     agent.activateRadar();
     expect(agent.isActive).toBe(true);
   });
 
   it('detects commission trap keywords', () => {
-    const agent = new SarthiAgent('user_001');
+    const agent = new YaartriAgent('user_001');
     agent.activateRadar();
     const result = agent.analyzeSentiment('Let me take you to my uncle factory for cheap gems');
     expect(result.alert).toBe(true);
   });
 
   it('passes clean messages', () => {
-    const agent = new SarthiAgent('user_001');
+    const agent = new YaartriAgent('user_001');
     agent.activateRadar();
     const result = agent.analyzeSentiment('Let us visit the temple together');
     expect(result).toBeUndefined();

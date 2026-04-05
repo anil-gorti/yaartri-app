@@ -46,7 +46,7 @@ export class IdentityService {
    * Updates a user's Yaartri profile with Aadhaar Verified Status
    */
   static async bindIdentityToUser(userId, uidaiHash) {
-    console.log(`[Sarthi Identity Guard] User ${userId} bound to hash ${uidaiHash}.`);
+    console.log(`[Yaartri Identity Guard] User ${userId} bound to hash ${uidaiHash}.`);
     // DB.Yaartri_User.update({ id: userId }, { is_aadhaar_verified: true, aadhaar_hash: uidaiHash });
     return true;
   }

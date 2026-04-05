@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap');
 
 /* ==========================================================================
-   Design System: Yaartri / Sarthi Shield
+   Design System: Yaartri
    Dark-mode-native. Linear-inspired precision. Time-of-day adaptive.
    ========================================================================== */
 
@@ -213,7 +213,7 @@ body {
   display: flex; align-items: center; justify-content: center;
 }
 
-.sarthi-marker { background: none !important; border: none !important; }
+.yaartri-marker { background: none !important; border: none !important; }
 
 .map-popup {
   display: flex; flex-direction: column; gap: 2px;

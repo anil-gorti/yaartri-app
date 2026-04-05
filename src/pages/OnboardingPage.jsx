@@ -34,7 +34,7 @@ const NARRATIVE_SCREENS = [
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
       </svg>
     ),
-    title: 'Sarthi watches your back',
+    title: 'Yaartri watches your back',
     body: 'Our AI agent detects scams in real-time, flags route deviations, and shields you from tourist traps. Always on. Always vigilant.',
     accent: '#fbbf24',
   },
