@@ -3,367 +3,455 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#08090a">
-  <meta name="description" content="Yaartri is an AI-powered trust network that connects verified solo travelers into accountability-backed squads. Real identity. Real-time protection. Real connections.">
-  <title>Yaartri &mdash; The Operating System for Human Trust</title>
+  <meta name="theme-color" content="#0c0a09">
+  <meta name="description" content="Yaartri is an AI-powered trust network that connects Aadhaar-verified solo travelers into accountability-backed squads. Real identity. Real-time protection. Real connections.">
+  <title>Yaartri &mdash; Travel India with people who showed up verified</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #08090a;
-      --bg-panel: #0f1011;
-      --bg-surface: #191a1b;
-      --text-1: #f7f8f8;
-      --text-2: #d0d6e0;
-      --text-3: #8a8f98;
-      --text-4: #62666d;
-      --mint: #00FFC2;
-      --mint-dim: rgba(0,255,194,0.12);
-      --mint-subtle: rgba(0,255,194,0.06);
-      --border: rgba(255,255,255,0.06);
-      --border-h: rgba(255,255,255,0.10);
-      --danger: #ef4444;
+      --bg-deep: #0c0a09;
+      --bg-panel: #1c1917;
+      --bg-surface: #292524;
+      --bg-elevated: #44403c;
+      --text-1: #fafaf9;
+      --text-2: #d6d3d1;
+      --text-3: #a8a29e;
+      --text-4: #78716c;
+      --accent: #f59e0b;
+      --accent-bright: #fbbf24;
+      --accent-dim: rgba(245, 158, 11, 0.15);
+      --accent-subtle: rgba(245, 158, 11, 0.06);
+      --border: rgba(168, 162, 158, 0.08);
+      --border-h: rgba(168, 162, 158, 0.15);
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', -apple-system, system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', -apple-system, system-ui, sans-serif;
-      font-feature-settings: 'cv01', 'ss03';
-      background: var(--bg);
-      color: var(--text-1);
+      font-family: var(--font-body);
+      background: var(--bg-deep);
+      color: var(--text-2);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
+      line-height: 1.7;
       overflow-x: hidden;
     }
-    .mono { font-family: 'Roboto Mono', monospace; }
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.3;
+      mix-blend-mode: overlay;
+    }
 
     /* ---- Nav ---- */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 0 24px;
-      transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+      transition: background 0.4s, border-color 0.4s;
       border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      background: rgba(8,9,10,0.82);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      background: rgba(12,10,9,0.88);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom-color: var(--border);
     }
     .nav-inner {
-      max-width: 1120px; margin: 0 auto;
+      max-width: 1080px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
+      height: 64px;
     }
-    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-brand span { font-size: 17px; font-weight: 600; color: var(--text-1); letter-spacing: -0.03em; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
+    }
+    .nav-brand span {
+      font-family: var(--font-display); font-size: 20px; color: var(--text-1);
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
     .nav-links a {
-      color: var(--text-3); font-size: 13px; font-weight: 500; text-decoration: none;
-      transition: color 0.2s; letter-spacing: -0.01em;
+      color: var(--text-4); font-size: 13px; font-weight: 500; text-decoration: none;
+      transition: color 0.2s; letter-spacing: 0.01em;
     }
-    .nav-links a:hover { color: var(--text-1); }
+    .nav-links a:hover { color: var(--text-2); }
     .nav-cta {
-      padding: 7px 18px; border-radius: 6px;
-      border: 1px solid var(--border-h); background: rgba(255,255,255,0.04);
-      color: var(--text-2); font-size: 13px; font-weight: 500; font-family: inherit;
+      padding: 8px 20px; border-radius: 6px;
+      border: 1px solid var(--border-h); background: transparent;
+      color: var(--text-2); font-size: 13px; font-weight: 500;
+      font-family: var(--font-body);
       cursor: pointer; transition: all 0.2s; text-decoration: none;
     }
-    .nav-cta:hover { background: rgba(255,255,255,0.07); color: var(--text-1); border-color: rgba(255,255,255,0.15); }
-    .nav-mobile { display: none; background: none; border: none; color: var(--text-2); cursor: pointer; padding: 4px; }
+    .nav-cta:hover { background: rgba(255,255,255,0.04); color: var(--text-1); }
+    .nav-mobile { display: none; background: none; border: none; color: var(--text-3); cursor: pointer; padding: 4px; }
 
-    /* ---- Sections ---- */
-    section { position: relative; }
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-    .section-label {
-      font-size: 11px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--mint); margin-bottom: 16px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .section-label::before {
-      content: ''; width: 20px; height: 1px; background: var(--mint); opacity: 0.4;
-    }
-    h2 {
-      font-size: clamp(28px, 5vw, 44px); font-weight: 500;
-      letter-spacing: -0.03em; line-height: 1.15; color: var(--text-1);
-      margin-bottom: 16px;
-    }
-    .section-sub {
-      font-size: 17px; color: var(--text-3); max-width: 540px; line-height: 1.6;
-    }
-    .divider {
-      height: 1px; background: var(--border); margin: 0;
+    /* ---- Layout ---- */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .section-rule {
+      width: 80px; height: 1px; background: var(--border-h); margin: 0 auto;
     }
 
     /* ---- Hero ---- */
     .hero {
-      min-height: 100vh; display: flex; align-items: center;
-      padding: 100px 0 80px; overflow: hidden;
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 0 0 96px;
+      position: relative; overflow: hidden;
     }
-    .hero-glow {
-      position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
-      width: 700px; height: 700px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,255,194,0.06) 0%, transparent 65%);
-      filter: blur(40px); pointer-events: none;
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(12,10,9,0.2) 0%, rgba(12,10,9,0.5) 50%, rgba(12,10,9,0.95) 85%, var(--bg-deep) 100%),
+        linear-gradient(135deg, rgba(245,158,11,0.08) 0%, transparent 50%),
+        var(--bg-deep);
+      z-index: 0;
     }
-    .hero-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(245,158,11,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(168,162,158,0.03) 0%, transparent 50%);
+    }
+    .hero-content {
       position: relative; z-index: 1;
+      max-width: 720px;
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 5px 14px; border-radius: 9999px;
-      border: 1px solid rgba(0,255,194,0.2); background: rgba(0,255,194,0.04);
-      color: var(--mint); font-size: 11px; font-weight: 500; letter-spacing: 0.04em;
-      text-transform: uppercase; margin-bottom: 28px;
+    .hero-label {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent); margin-bottom: 28px;
     }
     .hero h1 {
-      font-size: clamp(36px, 5.5vw, 64px); font-weight: 600;
-      letter-spacing: -0.035em; line-height: 1.08; margin-bottom: 24px;
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 72px); font-weight: 400;
+      line-height: 1.1; letter-spacing: -0.02em;
+      color: var(--text-1); margin-bottom: 28px;
     }
     .hero-body {
-      font-size: 17px; color: var(--text-2); line-height: 1.7;
-      max-width: 480px; margin-bottom: 40px;
+      font-size: 18px; color: var(--text-3); line-height: 1.7;
+      max-width: 520px; margin-bottom: 44px;
     }
-    .hero-body strong { color: var(--text-1); font-weight: 500; }
-    .hero-actions { display: flex; gap: 12px; margin-bottom: 48px; flex-wrap: wrap; }
-
-    .btn-mint {
-      padding: 12px 28px; border-radius: 8px;
-      border: 1px solid rgba(0,255,194,0.3);
-      background: linear-gradient(135deg, rgba(0,255,194,0.1), rgba(0,255,194,0.04));
-      color: var(--mint); font-size: 14px; font-weight: 600; font-family: inherit;
-      cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
-      text-decoration: none;
-    }
-    .btn-mint:hover {
-      background: linear-gradient(135deg, rgba(0,255,194,0.16), rgba(0,255,194,0.08));
-      box-shadow: 0 0 28px rgba(0,255,194,0.12); transform: translateY(-1px);
-    }
-    .btn-ghost {
-      padding: 12px 28px; border-radius: 8px;
-      border: 1px solid var(--border-h); background: rgba(255,255,255,0.03);
-      color: var(--text-2); font-size: 14px; font-weight: 500; font-family: inherit;
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px; border-radius: 8px; border: none;
+      background: var(--accent); color: #0c0a09;
+      font-size: 15px; font-weight: 600; font-family: var(--font-body);
       cursor: pointer; transition: all 0.2s; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 8px;
     }
-    .btn-ghost:hover { background: rgba(255,255,255,0.06); color: var(--text-1); }
-
-    .hero-stats {
-      display: flex; gap: 32px; align-items: center;
-    }
-    .hero-stat-val { font-size: 28px; font-weight: 600; color: var(--mint); letter-spacing: -0.02em; }
-    .hero-stat-label { font-size: 12px; color: var(--text-3); margin-top: 2px; }
-    .hero-stat-div { width: 1px; height: 44px; background: var(--border); }
-
-    /* Hero visual */
-    .hero-visual {
-      position: relative; display: flex; justify-content: center;
-    }
-    .hero-phone {
-      width: 280px; height: 560px; border-radius: 32px;
-      border: 1px solid var(--border-h); background: var(--bg-panel);
-      overflow: hidden; position: relative;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 80px rgba(0,255,194,0.04);
-    }
-    .phone-header {
-      padding: 20px 18px 14px; display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid var(--border);
-    }
-    .phone-brand { display: flex; align-items: center; gap: 6px; }
-    .phone-brand svg { width: 14px; height: 14px; }
-    .phone-brand span { font-size: 13px; font-weight: 600; letter-spacing: -0.02em; }
-    .phone-badge {
-      font-size: 9px; padding: 2px 8px; border-radius: 9999px;
-      border: 1px solid var(--border); color: var(--text-3); letter-spacing: 0.02em;
-    }
-    .phone-ri { padding: 12px 18px; }
-    .ri-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 6px; }
-    .ri-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); font-weight: 600; }
-    .ri-val { font-size: 14px; font-weight: 500; }
-    .ri-track { width: 100%; height: 2px; background: rgba(255,255,255,0.06); border-radius: 1px; }
-    .ri-fill { width: 98%; height: 100%; background: var(--mint); border-radius: 1px; box-shadow: 0 0 8px var(--mint); }
-    .phone-cards { padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; }
-    .phone-card {
-      padding: 12px; border-radius: 10px; border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-    }
-    .pc-title { font-size: 12px; font-weight: 500; margin-bottom: 3px; }
-    .pc-meta { font-size: 10px; color: var(--text-3); display: flex; align-items: center; gap: 4px; }
-    .pc-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
-    .pc-avatars { display: flex; }
-    .pc-av {
-      width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--bg-panel);
-      background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center;
-      font-size: 7px; font-weight: 500; color: var(--text-2); margin-left: -4px;
-    }
-    .pc-av:first-child { margin-left: 0; }
-    .pc-join {
-      font-size: 9px; padding: 3px 10px; border-radius: 9999px;
-      border: 1px solid rgba(0,255,194,0.2); color: var(--mint);
-      background: rgba(0,255,194,0.06); font-weight: 500;
-    }
-    .phone-glow {
-      position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%);
-      width: 200px; height: 200px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,255,194,0.08) 0%, transparent 70%);
-      pointer-events: none;
+    .btn-primary:hover {
+      background: var(--accent-bright);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(245,158,11,0.25);
     }
 
-    /* ---- Ticker ---- */
-    .ticker {
-      padding: 18px 0; overflow: hidden;
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      background: rgba(15,16,17,0.3);
-      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    /* ---- Trust Section ---- */
+    .trust {
+      padding: 160px 0 120px;
     }
-    .ticker-track {
-      display: flex; gap: 48px; width: max-content;
-      animation: ticker 35s linear infinite;
+    .trust-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
     }
-    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .ticker-item { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
-    .ticker-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 6px var(--mint); flex-shrink: 0; }
-    .ticker-text { font-size: 13px; color: var(--text-2); font-weight: 500; }
-
-    /* ---- Problem ---- */
-    .problem { padding: 120px 0; }
-    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
-    .problem-card {
-      padding: 32px 28px; border-radius: 12px;
-      border: 1px solid var(--border); background: rgba(255,255,255,0.02);
-      transition: all 0.3s;
+    .trust-label {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent); margin-bottom: 20px;
     }
-    .problem-card:hover { border-color: var(--border-h); background: rgba(255,255,255,0.03); }
-    .problem-icon {
-      width: 40px; height: 40px; border-radius: 10px; margin-bottom: 20px;
+    .trust h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px); font-weight: 400;
+      line-height: 1.15; color: var(--text-1); margin-bottom: 48px;
+    }
+    .trust-item {
+      border-left: 2px solid var(--border-h); padding: 0 0 0 20px;
+      margin-bottom: 32px;
+    }
+    .trust-item:last-child { margin-bottom: 0; }
+    .trust-item h3 {
+      font-family: var(--font-body); font-size: 15px; font-weight: 600;
+      color: var(--text-1); margin-bottom: 4px;
+    }
+    .trust-item p {
+      font-size: 14px; color: var(--text-3); line-height: 1.6;
+    }
+    /* Trust card -- rendered UI component */
+    .trust-card {
+      background: var(--bg-panel); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px; position: relative; overflow: hidden;
+    }
+    .trust-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--accent), transparent);
+    }
+    .tc-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 28px;
+    }
+    .tc-name { font-size: 18px; font-weight: 600; color: var(--text-1); }
+    .tc-badge {
+      font-family: var(--font-mono); font-size: 10px; padding: 3px 10px;
+      border-radius: 4px; background: rgba(34,197,94,0.1);
+      color: #22c55e; letter-spacing: 0.04em; font-weight: 500;
+    }
+    .tc-score {
+      display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px;
+    }
+    .tc-score-val {
+      font-family: var(--font-mono); font-size: 48px; font-weight: 500;
+      color: var(--text-1); letter-spacing: -0.03em; line-height: 1;
+    }
+    .tc-score-label {
+      font-size: 13px; color: var(--text-4); text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .tc-bar {
+      height: 4px; background: var(--bg-surface); border-radius: 2px;
+      margin-bottom: 28px; overflow: hidden;
+    }
+    .tc-bar-fill {
+      height: 100%; width: 98%; border-radius: 2px;
+      background: linear-gradient(to right, var(--accent), var(--accent-bright));
+    }
+    .tc-history-label {
+      font-size: 11px; color: var(--text-4); text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 12px;
+    }
+    .tc-history {
+      display: flex; gap: 6px;
+    }
+    .tc-dot {
+      width: 28px; height: 28px; border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.15);
-      color: var(--danger);
+      font-size: 11px;
     }
-    .problem-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 8px; letter-spacing: -0.01em; }
-    .problem-card p { font-size: 14px; color: var(--text-3); line-height: 1.6; }
+    .tc-dot--ok { background: rgba(34,197,94,0.1); color: #22c55e; }
+    .tc-dot--miss { background: rgba(239,68,68,0.1); color: #ef4444; }
+    .tc-meta {
+      margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+    }
+    .tc-meta-item { font-size: 12px; color: var(--text-4); }
+    .tc-meta-val { color: var(--text-3); font-weight: 500; }
 
-    /* ---- How It Works ---- */
-    .how { padding: 120px 0; }
-    .how-steps { margin-top: 64px; display: flex; flex-direction: column; gap: 0; }
-    .step {
-      display: grid; grid-template-columns: 56px 1fr; gap: 24px;
-      padding: 32px 0; border-top: 1px solid var(--border);
+    /* ---- How It Works (alternating blocks) ---- */
+    .experience { padding: 120px 0 0; }
+    .experience-label {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent); margin-bottom: 20px; text-align: center;
     }
-    .step:last-child { border-bottom: 1px solid var(--border); }
-    .step-num {
-      width: 40px; height: 40px; border-radius: 10px;
-      border: 1px solid var(--border-h); background: rgba(255,255,255,0.03);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 600; color: var(--text-3);
+    .experience > .container > h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px); font-weight: 400;
+      line-height: 1.15; color: var(--text-1);
+      text-align: center; margin-bottom: 80px;
     }
-    .step h3 { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 6px; }
-    .step p { font-size: 15px; color: var(--text-3); line-height: 1.6; max-width: 560px; }
+    .exp-block {
+      display: grid; grid-template-columns: 80px 1fr; gap: 32px;
+      padding: 48px 0; border-top: 1px solid var(--border);
+      align-items: start;
+    }
+    .exp-block:last-child { border-bottom: 1px solid var(--border); }
+    .exp-num {
+      font-family: var(--font-display); font-size: 64px;
+      color: var(--text-1); opacity: 0.07; line-height: 1;
+    }
+    .exp-block h3 {
+      font-family: var(--font-display); font-size: 24px; font-weight: 400;
+      color: var(--text-1); margin-bottom: 8px;
+    }
+    .exp-block p {
+      font-size: 15px; color: var(--text-3); line-height: 1.7;
+      max-width: 540px;
+    }
+    .exp-detail {
+      font-family: var(--font-mono); font-size: 11px; color: var(--text-4);
+      margin-top: 12px; letter-spacing: 0.02em;
+    }
 
-    /* ---- Features ---- */
-    .features { padding: 120px 0; }
-    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
-    .feature-card {
-      padding: 28px 24px; border-radius: 12px;
-      border: 1px solid var(--border); background: rgba(255,255,255,0.02);
-      transition: all 0.3s;
+    /* ---- Shield Feature (hero feature) ---- */
+    .shield { padding: 160px 0 80px; }
+    .shield-label {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent); margin-bottom: 20px;
     }
-    .feature-card:hover { border-color: var(--border-h); background: rgba(255,255,255,0.03); }
-    .feature-icon {
-      width: 36px; height: 36px; border-radius: 8px; margin-bottom: 18px;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--mint-subtle); border: 1px solid rgba(0,255,194,0.12);
-      color: var(--mint);
+    .shield-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
     }
-    .feature-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 6px; letter-spacing: -0.01em; }
-    .feature-card p { font-size: 13px; color: var(--text-3); line-height: 1.55; }
+    .shield h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px); font-weight: 400;
+      line-height: 1.15; color: var(--text-1); margin-bottom: 20px;
+    }
+    .shield-body {
+      font-size: 16px; color: var(--text-3); line-height: 1.7;
+    }
+    /* Alert notification */
+    .shield-alert {
+      background: var(--bg-panel); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: 12px;
+      padding: 24px; position: relative;
+    }
+    .sa-badge {
+      font-family: var(--font-mono); font-size: 10px; padding: 3px 8px;
+      border-radius: 4px; background: rgba(245,158,11,0.1);
+      color: var(--accent); letter-spacing: 0.04em; font-weight: 500;
+      margin-bottom: 12px; display: inline-block;
+    }
+    .sa-text {
+      font-size: 14px; color: var(--text-2); line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .sa-actions { display: flex; gap: 8px; }
+    .sa-btn {
+      padding: 8px 16px; border-radius: 6px; font-size: 12px;
+      font-weight: 600; font-family: var(--font-body);
+      cursor: pointer; border: none; transition: all 0.2s;
+    }
+    .sa-btn--primary { background: var(--accent); color: #0c0a09; }
+    .sa-btn--ghost {
+      background: transparent; color: var(--text-3);
+      border: 1px solid var(--border);
+    }
+
+    /* Supporting features */
+    .features-compact {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: var(--border); border-radius: 12px; overflow: hidden;
+      margin-top: 0; border: 1px solid var(--border);
+    }
+    .fc-item {
+      background: var(--bg-deep); padding: 28px 24px;
+    }
+    .fc-item h3 {
+      font-size: 14px; font-weight: 600; color: var(--text-1);
+      margin-bottom: 6px;
+    }
+    .fc-item p {
+      font-size: 13px; color: var(--text-4); line-height: 1.5;
+    }
 
     /* ---- Manifesto ---- */
-    .manifesto { padding: 120px 0; }
-    .manifesto-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 56px; }
-    .manifesto-card {
-      padding: 28px 24px; border-radius: 12px;
-      border: 1px solid var(--border); background: rgba(255,255,255,0.015);
-      display: flex; gap: 16px; align-items: flex-start; transition: all 0.3s;
+    .manifesto { padding: 160px 0; }
+    .manifesto-label {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent); margin-bottom: 48px; text-align: center;
     }
-    .manifesto-card:hover { border-color: var(--border-h); }
-    .manifesto-check {
-      width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
-      border: 1px solid rgba(0,255,194,0.2); background: rgba(0,255,194,0.06);
-      display: flex; align-items: center; justify-content: center; color: var(--mint);
-      margin-top: 2px;
+    .manifesto-item {
+      text-align: center; max-width: 640px; margin: 0 auto;
+      padding: 48px 0;
     }
-    .manifesto-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
-    .manifesto-card p { font-size: 13px; color: var(--text-3); line-height: 1.5; }
+    .manifesto-item + .manifesto-item {
+      border-top: 1px solid var(--border);
+    }
+    .manifesto-item blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 48px); font-weight: 400;
+      line-height: 1.2; color: var(--text-1); margin-bottom: 16px;
+    }
+    .manifesto-item p {
+      font-size: 16px; color: var(--text-3); line-height: 1.7;
+      max-width: 480px; margin: 0 auto;
+    }
 
     /* ---- Cities ---- */
-    .cities { padding: 120px 0; }
-    .cities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 56px; }
-    .city-card {
-      padding: 32px 28px; border-radius: 12px;
-      border: 1px solid var(--border); position: relative; overflow: hidden;
-      background: linear-gradient(135deg, rgba(251,191,36,0.03), rgba(249,115,22,0.02), transparent);
-      transition: all 0.3s;
+    .cities { padding: 0 0 120px; }
+    .cities-label {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent); margin-bottom: 20px;
     }
-    .city-card:hover { border-color: var(--border-h); }
-    .city-card h3 { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 6px; }
-    .city-card p { font-size: 13px; color: var(--text-3); margin-bottom: 20px; }
-    .city-stats { display: flex; gap: 20px; }
-    .city-stat { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-3); }
-    .city-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); }
+    .cities h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px); font-weight: 400;
+      line-height: 1.15; color: var(--text-1); margin-bottom: 56px;
+    }
+    .city-band {
+      position: relative; overflow: hidden; border-radius: 12px;
+      margin-bottom: 16px; border: 1px solid var(--border);
+      background: var(--bg-panel); padding: 48px 40px;
+    }
+    .city-band::before {
+      content: '';
+      position: absolute; inset: 0;
+      opacity: 0.06;
+    }
+    .city-band--varanasi::before {
+      background: linear-gradient(135deg, rgba(245,158,11,0.3), transparent 60%);
+      opacity: 1;
+    }
+    .city-band--udaipur::before {
+      background: linear-gradient(135deg, rgba(168,162,158,0.15), transparent 60%);
+      opacity: 1;
+    }
+    .city-band h3 {
+      font-family: var(--font-display); font-size: 32px; font-weight: 400;
+      color: var(--text-1); margin-bottom: 8px; position: relative;
+    }
+    .city-band p {
+      font-size: 14px; color: var(--text-3); position: relative;
+      max-width: 480px;
+    }
 
     /* ---- Final CTA ---- */
     .final-cta {
-      padding: 120px 0; text-align: center;
-      background: radial-gradient(ellipse at center, rgba(0,255,194,0.04) 0%, transparent 60%);
+      padding: 200px 0 120px; text-align: center;
     }
-    .final-cta h2 { max-width: 100%; }
-    .final-cta .section-sub { margin: 0 auto 40px; text-align: center; }
-    .final-note { font-size: 12px; color: var(--text-4); margin-top: 16px; }
+    .final-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 56px); font-weight: 400;
+      line-height: 1.15; color: var(--text-1); margin-bottom: 32px;
+    }
+    .final-cta .btn-primary { margin-bottom: 20px; }
+    .final-note {
+      font-size: 13px; color: var(--text-4); font-family: var(--font-mono);
+      letter-spacing: 0.01em;
+    }
 
     /* ---- Footer ---- */
-    footer {
-      padding: 40px 0; border-top: 1px solid var(--border);
-    }
+    footer { padding: 48px 0; border-top: 1px solid var(--border); }
     .footer-inner {
       display: flex; justify-content: space-between; align-items: center;
     }
     .footer-brand { display: flex; align-items: center; gap: 8px; }
-    .footer-brand span { font-size: 14px; font-weight: 600; color: var(--text-3); }
-    .footer-links { display: flex; gap: 24px; list-style: none; }
-    .footer-links a { font-size: 12px; color: var(--text-4); text-decoration: none; transition: color 0.2s; }
+    .footer-brand span {
+      font-family: var(--font-display); font-size: 16px; color: var(--text-4);
+    }
+    .footer-links { display: flex; gap: 28px; list-style: none; }
+    .footer-links a {
+      font-size: 13px; color: var(--text-4); text-decoration: none;
+      transition: color 0.2s;
+    }
     .footer-links a:hover { color: var(--text-2); }
     .footer-copy { font-size: 12px; color: var(--text-4); }
 
     /* ---- Responsive ---- */
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-      .hero-visual { order: -1; }
-      .hero-phone { width: 240px; height: 480px; }
-      .problem-grid, .feature-grid { grid-template-columns: 1fr; }
-      .manifesto-grid, .cities-grid { grid-template-columns: 1fr; }
+      .trust-grid, .shield-grid { grid-template-columns: 1fr; gap: 48px; }
+      .features-compact { grid-template-columns: repeat(2, 1fr); }
       .nav-links { display: none; }
       .nav-mobile { display: block; }
+      .exp-block { grid-template-columns: 48px 1fr; gap: 20px; }
+      .exp-num { font-size: 48px; }
     }
     @media (max-width: 600px) {
-      .hero { padding: 80px 0 60px; }
-      .hero-stats { gap: 20px; }
-      .hero-stat-val { font-size: 22px; }
-      .hero-actions { flex-direction: column; }
-      .btn-mint, .btn-ghost { width: 100%; justify-content: center; }
+      .hero { padding-bottom: 64px; }
+      .features-compact { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
+      .btn-primary { width: 100%; justify-content: center; }
+      .city-band { padding: 32px 24px; }
     }
-
-    /* ---- Animate on scroll ---- */
-    .reveal {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -372,13 +460,13 @@
 <nav id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-brand">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00FFC2" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       <span>Yaartri</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#problem">Problem</a></li>
+      <li><a href="#trust">Trust</a></li>
       <li><a href="#how">How It Works</a></li>
-      <li><a href="#features">Features</a></li>
+      <li><a href="#shield">Protection</a></li>
       <li><a href="#manifesto">Manifesto</a></li>
     </ul>
     <a href="/app.html" class="nav-cta">Enter App</a>
@@ -390,332 +478,218 @@
 
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-glow"></div>
+  <div class="hero-bg"></div>
   <div class="container">
-    <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-label">Aadhaar-verified trust network</div>
+      <h1>Travel India with people who showed up verified.</h1>
+      <p class="hero-body">
+        Yaartri connects identity-verified solo travelers into accountability-backed squads for shared experiences across India.
+      </p>
+      <a href="/app.html" class="btn-primary">
+        Join the Trust Network
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Trust -->
+<section class="trust" id="trust">
+  <div class="container">
+    <div class="trust-grid">
       <div>
-        <div class="hero-badge mono">The Operating System for Human Trust</div>
-        <h1>Travel India<br>without the anxiety.</h1>
-        <p class="hero-body">
-          Yaartri is an AI-powered trust network that connects verified solo travelers into accountability-backed squads.
-          <strong>Real identity. Real-time protection. Real connections.</strong>
-        </p>
-        <div class="hero-actions">
-          <a href="/app.html" class="btn-mint">
-            Join the Trust Network
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-          <a href="#how" class="btn-ghost">
-            See How It Works
-          </a>
+        <div class="trust-label">How trust works</div>
+        <h2>Every person you meet is Aadhaar-verified.</h2>
+        <div class="trust-item">
+          <h3>Identity hashed, never stored</h3>
+          <p>Zero-knowledge Aadhaar verification. We prove you are real without storing who you are. Your hash exists; your data doesn't.</p>
         </div>
-        <div class="hero-stats">
-          <div>
-            <div class="hero-stat-val">98%</div>
-            <div class="hero-stat-label">Reliability Index</div>
-          </div>
-          <div class="hero-stat-div"></div>
-          <div>
-            <div class="hero-stat-val">3,200+</div>
-            <div class="hero-stat-label">Verified Yaars</div>
-          </div>
+        <div class="trust-item">
+          <h3>Yaar Score tracks reliability</h3>
+          <p>Every commitment honored raises your score. Every ghost drops it. The network knows who shows up.</p>
+        </div>
+        <div class="trust-item">
+          <h3>Ghosting has real consequences</h3>
+          <p>No-shows trigger score penalties and reduced visibility for future squads. Your word is your bond.</p>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="hero-phone">
-          <div class="phone-header">
-            <div class="phone-brand">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00FFC2" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <span>Yaartri</span>
-            </div>
-            <span class="phone-badge">Varanasi</span>
+      <div>
+        <div class="trust-card">
+          <div class="tc-header">
+            <span class="tc-name">Priya M.</span>
+            <span class="tc-badge">VERIFIED</span>
           </div>
-          <div class="phone-ri">
-            <div class="ri-row"><span class="ri-label">Reliability Index</span><span class="ri-val mono">98%</span></div>
-            <div class="ri-track"><div class="ri-fill"></div></div>
+          <div class="tc-score">
+            <span class="tc-score-val">98</span>
+            <span class="tc-score-label">Yaar Score</span>
           </div>
-          <div class="phone-cards">
-            <div class="phone-card">
-              <div class="pc-title">Dashashwamedh Aarti Boat</div>
-              <div class="pc-meta">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Varanasi Ghats &middot; Today, 17:00
-              </div>
-              <div class="pc-footer">
-                <div class="pc-avatars"><div class="pc-av">RS</div><div class="pc-av">PM</div><div class="pc-av">AK</div></div>
-                <span class="pc-join">Join</span>
-              </div>
-            </div>
-            <div class="phone-card">
-              <div class="pc-title">Kashi Vishwanath Corridor Walk</div>
-              <div class="pc-meta">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Gate 4 &middot; Tomorrow, 06:00
-              </div>
-              <div class="pc-footer">
-                <div class="pc-avatars"><div class="pc-av">SM</div></div>
-                <span class="pc-join">Join</span>
-              </div>
-            </div>
-            <div class="phone-card">
-              <div class="pc-title">Lassi &amp; Street Food Circuit</div>
-              <div class="pc-meta">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Blue Lassi Shop &middot; Today, 11:00
-              </div>
-              <div class="pc-footer">
-                <div class="pc-avatars"><div class="pc-av">VR</div><div class="pc-av">NK</div></div>
-                <span class="pc-join">Join</span>
-              </div>
-            </div>
+          <div class="tc-bar"><div class="tc-bar-fill"></div></div>
+          <div class="tc-history-label">Last 7 commitments</div>
+          <div class="tc-history">
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tc-dot tc-dot--miss"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
           </div>
-          <div class="phone-glow"></div>
+          <div class="tc-meta">
+            <div class="tc-meta-item">Joined <span class="tc-meta-val">Mar 2026</span></div>
+            <div class="tc-meta-item">Squads <span class="tc-meta-val">12</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Ticker -->
-<div class="ticker">
-  <div class="ticker-track">
-    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">3,200+ Verified Yaars</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Varanasi &middot; Udaipur &middot; Jaipur</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">95% Reliability Rate</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Zero tolerance. Zero scams.</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Aadhaar-verified trust network</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">3,200+ Verified Yaars</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Varanasi &middot; Udaipur &middot; Jaipur</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">95% Reliability Rate</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Zero tolerance. Zero scams.</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-text">Aadhaar-verified trust network</span></div>
+<div class="section-rule"></div>
+
+<!-- How It Works -->
+<section class="experience" id="how">
+  <div class="container">
+    <div class="experience-label">How Yaartri works</div>
+    <h2>From verified stranger to trusted companion.</h2>
+    <div class="exp-block">
+      <div class="exp-num">01</div>
+      <div>
+        <h3>Verify once</h3>
+        <p>Aadhaar-Lite identity verification through Zoop. Your data is cryptographically hashed, never stored. You prove you are real without revealing who you are.</p>
+        <div class="exp-detail">&#60; 30 seconds. Government-grade verification.</div>
+      </div>
+    </div>
+    <div class="exp-block">
+      <div class="exp-num">02</div>
+      <div>
+        <h3>Find your squad</h3>
+        <p>Yaartri's AI proposes verified groups for shared experiences near you. Boat rides at Dashashwamedh Ghat. Food walks through Kachori Gali. Morning walks at Kashi Vishwanath Corridor. All within Safe-Hub zones.</p>
+        <div class="exp-detail">Matched by destination, time, and trust score.</div>
+      </div>
+    </div>
+    <div class="exp-block">
+      <div class="exp-num">03</div>
+      <div>
+        <h3>Commit and go</h3>
+        <p>Join with a handshake commitment. Your Yaar Score tracks every promise kept and every no-show. The network self-polices because everyone has skin in the game.</p>
+        <div class="exp-detail">Ghosting penalty: -15 points. Showing up: priceless.</div>
+      </div>
+    </div>
+    <div class="exp-block">
+      <div class="exp-num">04</div>
+      <div>
+        <h3>Yaartri watches</h3>
+        <p>Real-time scam detection runs silently. Route deviation alerts catch commission traps. NLP flags suspicious keywords. The AI agent monitors your safety so you can focus on the experience.</p>
+        <div class="exp-detail">Always on. Always vigilant. Zero false peace.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="padding: 80px 0;"><div class="section-rule"></div></div>
+
+<!-- Shield (hero feature) -->
+<section class="shield" id="shield">
+  <div class="container">
+    <div class="shield-label">Core protection</div>
+    <div class="shield-grid">
+      <div>
+        <h2>Scam Shield AI</h2>
+        <p class="shield-body">
+          Commission traps, route deviations, closed-monument scams. India's tourist corridors are designed to extract money from solo travelers. Yaartri's NLP engine flags suspicious language in real-time. Geofencing catches auto-rickshaws taking you off-route. When something looks wrong, you get an alert before it becomes a problem.
+        </p>
+      </div>
+      <div>
+        <div class="shield-alert">
+          <div class="sa-badge">ROUTE DEVIATION</div>
+          <p class="sa-text">
+            Your auto-rickshaw has deviated 800m from the optimal route to Amber Fort. This matches a known commission-trap pattern near Johari Bazaar.
+          </p>
+          <div class="sa-actions">
+            <button class="sa-btn sa-btn--primary">View Safe Route</button>
+            <button class="sa-btn sa-btn--ghost">I'm Fine</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Supporting features -->
+<div class="container" style="padding-bottom: 120px;">
+  <div class="features-compact">
+    <div class="fc-item">
+      <h3>Safe-Hub Map</h3>
+      <p>Verified cafes, monuments, and transport hubs. Every meetup inside the trust perimeter.</p>
+    </div>
+    <div class="fc-item">
+      <h3>Smart-Split UPI</h3>
+      <p>Activity ends, Yaartri handles the math. No awkward bill negotiations.</p>
+    </div>
+    <div class="fc-item">
+      <h3>Anti-Ghosting</h3>
+      <p>Commit means commit. Your score drops if you ghost. The network remembers.</p>
+    </div>
+    <div class="fc-item">
+      <h3>Context-Aware</h3>
+      <p>Morning walks, evening aartis, night markets. Yaartri knows what's relevant now.</p>
+    </div>
   </div>
 </div>
 
-<!-- Problem -->
-<section class="problem" id="problem">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">The Problem</div>
-      <h2>Solo travel in India is broken.</h2>
-    </div>
-    <div class="problem-grid">
-      <div class="problem-card reveal">
-        <div class="problem-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        </div>
-        <h3>Scam Fatigue</h3>
-        <p>Taxi redirects, factory commissions, closed-monument traps. You're a target the moment you arrive.</p>
-      </div>
-      <div class="problem-card reveal">
-        <div class="problem-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>Safety Anxiety</h3>
-        <p>No accountability. No verification. Every stranger is a question mark.</p>
-      </div>
-      <div class="problem-card reveal">
-        <div class="problem-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <h3>Cost Inefficiency</h3>
-        <p>Single-rider surcharges. Table-for-one blues. Solo penalties everywhere.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="container"><div class="divider"></div></div>
-
-<!-- How It Works -->
-<section class="how" id="how">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">How Yaartri Works</div>
-      <h2>An AI agent that has your back.</h2>
-    </div>
-    <div class="how-steps">
-      <div class="step reveal">
-        <div class="step-num">01</div>
-        <div>
-          <h3>Verify Once</h3>
-          <p>Aadhaar-Lite identity verification. Your data is hashed, never stored. Zero-knowledge proof of who you are.</p>
-        </div>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">02</div>
-        <div>
-          <h3>Discover Squads</h3>
-          <p>Yaartri's AI proposes verified groups for shared experiences near you. Boat rides, food walks, monument visits. All within Safe-Hub zones.</p>
-        </div>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">03</div>
-        <div>
-          <h3>Commit &amp; Go</h3>
-          <p>Join with a handshake commitment. Your Yaar Score tracks reliability. Ghosting has consequences.</p>
-        </div>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">04</div>
-        <div>
-          <h3>Yaartri Watches</h3>
-          <p>Real-time scam detection. Route deviation alerts. Commission-trap NLP. The AI agent monitors your safety silently.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="container"><div class="divider"></div></div>
-
-<!-- Features -->
-<section class="features" id="features">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">Key Features</div>
-      <h2>Trust infrastructure that works<br>while you explore.</h2>
-    </div>
-    <div class="feature-grid">
-      <div class="feature-card reveal">
-        <div class="feature-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>Trust Shield</h3>
-        <p>Radial trust score that breathes. Your reliability is your armor.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-        </div>
-        <h3>Safe-Hub Map</h3>
-        <p>Verified cafes, monuments, and transport hubs. Every meetup inside the trust perimeter.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </div>
-        <h3>Scam Shield AI</h3>
-        <p>NLP flags commission traps. Geofencing catches route deviations. Real-time cinematic alerts.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <h3>Smart-Split UPI</h3>
-        <p>When the activity ends, Yaartri handles the math. No awkward bill moments.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <h3>Anti-Ghosting Law</h3>
-        <p>Commit means commit. Your Yaar Score drops if you ghost. The network self-polices.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-        </div>
-        <h3>Context-Aware</h3>
-        <p>Time-of-day intelligence. Morning walks, evening aartis, night markets. Yaartri knows what's relevant now.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="container"><div class="divider"></div></div>
+<div class="section-rule"></div>
 
 <!-- Manifesto -->
 <section class="manifesto" id="manifesto">
   <div class="container">
-    <div class="reveal">
-      <div class="section-label">The Yaartri Manifesto</div>
-      <h2>Radical candor for travelers.</h2>
+    <div class="manifesto-label">The Yaartri Manifesto</div>
+    <div class="manifesto-item">
+      <blockquote>Respect the RSVP.</blockquote>
+      <p>A commitment made is a commitment kept. Ghost a squad, and your Yaar Score drops. The network self-polices because everyone has skin in the game.</p>
     </div>
-    <div class="manifesto-grid">
-      <div class="manifesto-card reveal">
-        <div class="manifesto-check">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <h3>Respect the RSVP</h3>
-          <p>A commitment made is a commitment kept.</p>
-        </div>
-      </div>
-      <div class="manifesto-card reveal">
-        <div class="manifesto-check">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <h3>Default to Transparency</h3>
-          <p>Surprises are for birthdays, not travel logistics.</p>
-        </div>
-      </div>
-      <div class="manifesto-card reveal">
-        <div class="manifesto-check">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <h3>Leave Nobody Behind</h3>
-          <p>Empty seat? Open it to the verified network.</p>
-        </div>
-      </div>
-      <div class="manifesto-card reveal">
-        <div class="manifesto-check">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <h3>Protect the Sanctuary</h3>
-          <p>Safety is a collective responsibility.</p>
-        </div>
-      </div>
+    <div class="manifesto-item">
+      <blockquote>Default to transparency.</blockquote>
+      <p>Surprises are for birthdays, not travel logistics. Be explicit about what you seek. The Sentiment Sentinel watches for ambiguity.</p>
+    </div>
+    <div class="manifesto-item">
+      <blockquote>Leave nobody behind.</blockquote>
+      <p>Empty seat at the table? Open it to the verified network. Empty seat in the rickshaw? Share the ride and split the cost.</p>
+    </div>
+    <div class="manifesto-item">
+      <blockquote>Protect the sanctuary.</blockquote>
+      <p>Safety is a collective responsibility. Meet at Safe-Hubs. Stay in the trust perimeter. The network is only as strong as its boundaries.</p>
     </div>
   </div>
 </section>
 
-<div class="container"><div class="divider"></div></div>
+<div class="section-rule"></div>
 
 <!-- Pilot Cities -->
-<section class="cities" id="cities">
+<section class="cities" id="cities" style="padding-top: 120px;">
   <div class="container">
-    <div class="reveal">
-      <div class="section-label">Pilot Cities</div>
-      <h2>Starting where trust matters most.</h2>
+    <div class="cities-label">Pilot corridor</div>
+    <h2>Starting where trust matters most.</h2>
+    <div class="city-band city-band--varanasi">
+      <h3>Varanasi</h3>
+      <p>The spiritual capital. High-density tourism corridors, complex ghat networks, and India's most intense scam ecosystem. 8 Safe-Hubs verified. 2 active corridors mapped.</p>
     </div>
-    <div class="cities-grid">
-      <div class="city-card reveal">
-        <h3>Varanasi</h3>
-        <p>The spiritual capital. High-density tourism corridors, complex ghat networks, and India's most intense scam ecosystem.</p>
-        <div class="city-stats">
-          <div class="city-stat"><span class="city-dot"></span> 8 Safe-Hubs</div>
-          <div class="city-stat"><span class="city-dot"></span> 2 Active Corridors</div>
-        </div>
-      </div>
-      <div class="city-card reveal">
-        <h3>Udaipur</h3>
-        <p>The city of lakes. Heritage walks, boat sharing, and palace circuits where group economics beat solo pricing.</p>
-        <div class="city-stats">
-          <div class="city-stat"><span class="city-dot"></span> 4 Safe-Hubs</div>
-          <div class="city-stat"><span class="city-dot"></span> 1 Active Corridor</div>
-        </div>
-      </div>
+    <div class="city-band city-band--udaipur">
+      <h3>Udaipur</h3>
+      <p>The city of lakes. Heritage walks, boat sharing, and palace circuits where group economics beat solo pricing. 4 Safe-Hubs verified. Lake corridor active.</p>
     </div>
   </div>
 </section>
 
 <!-- Final CTA -->
-<section class="final-cta" id="cta">
+<section class="final-cta">
   <div class="container">
-    <div class="reveal">
-      <div class="section-label" style="justify-content: center;">Early Access</div>
-      <h2>Hard to join. Impossible to leave.</h2>
-      <p class="section-sub">We don't just build software. We build accountability.</p>
-      <a href="/app.html" class="btn-mint">
-        Request Early Access
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-      <p class="final-note">Aadhaar verification required. Currently accepting verified travelers in Varanasi.</p>
-    </div>
+    <h2>Trust is earned.<br>Start here.</h2>
+    <a href="/app.html" class="btn-primary">
+      Join the Trust Network
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <p class="final-note">Aadhaar verification required. Limited pilot: Varanasi &amp; Udaipur.</p>
   </div>
 </section>
 
@@ -724,7 +698,7 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00FFC2" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#78716c" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         <span>Yaartri</span>
       </div>
       <ul class="footer-links">
@@ -739,23 +713,10 @@
 </footer>
 
 <script>
-  // Nav scroll state
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function() {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
-
-  // Scroll reveal
-  var reveals = document.querySelectorAll('.reveal');
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(function(el) { observer.observe(el); });
 </script>
 </body>
 </html>
