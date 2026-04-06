@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--#include file="partials/head-meta.html" -->
+  <title>Safety &amp; Protection &mdash; Yaartri</title>
+  <style>
+    .page-header { padding: 140px 0 64px; }
+    .page-header h1 { margin-bottom: 16px; }
+    .page-header p { font-size: 18px; color: var(--text-3); max-width: 540px; line-height: 1.75; }
+
+    .shield-section { padding: 0 0 96px; }
+    .shield-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .shield-grid h2 { font-size: 32px; margin-bottom: 16px; }
+    .shield-grid p { font-size: 16px; color: var(--text-3); line-height: 1.75; }
+
+    .shield-alert {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: var(--radius-lg);
+      padding: 24px; box-shadow: var(--shadow-md);
+    }
+    .sa-badge {
+      font-family: var(--font-mono); font-size: 11px; padding: 3px 10px;
+      border-radius: 4px; background: var(--accent-dim);
+      color: var(--accent); letter-spacing: 0.04em; font-weight: 600;
+      margin-bottom: 12px; display: inline-block;
+    }
+    .sa-text { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: 16px; }
+    .sa-actions { display: flex; gap: 8px; }
+    .sa-btn {
+      padding: 8px 16px; border-radius: 6px; font-size: 12px;
+      font-weight: 600; font-family: var(--font-body); cursor: pointer; border: none;
+    }
+    .sa-btn--primary { background: var(--accent); color: #fff; }
+    .sa-btn--ghost { background: transparent; color: var(--text-3); border: 1px solid var(--border); }
+
+    .features-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+      margin-top: 56px;
+    }
+    .feature-card {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 32px;
+      box-shadow: var(--shadow-sm); transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+    .feature-card h3 { font-size: 18px; margin-bottom: 8px; }
+    .feature-card p { font-size: 14px; color: var(--text-3); line-height: 1.6; }
+
+    .trust-items { margin-top: 48px; }
+    .trust-item {
+      border-left: 2px solid var(--border-h); padding: 0 0 0 20px;
+      margin-bottom: 28px;
+    }
+    .trust-item:last-child { margin-bottom: 0; }
+    .trust-item h3 { font-family: var(--font-body); font-size: 16px; font-weight: 600; color: var(--text-1); margin-bottom: 4px; }
+    .trust-item p { font-size: 14px; color: var(--text-3); line-height: 1.6; }
+
+    .cta-band { text-align: center; padding: 96px 0; }
+    .cta-band h2 { margin-bottom: 24px; }
+
+    @media (max-width: 900px) {
+      .shield-grid { grid-template-columns: 1fr; gap: 32px; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!--#include file="partials/nav.html" -->
+
+  <section class="page-header">
+    <div class="container">
+      <div class="label">Safety &amp; protection</div>
+      <h1>Scam Shield AI and the trust infrastructure behind Yaartri.</h1>
+      <p>Commission traps, route deviations, ghosting. Yaartri's AI agent handles the threats so you can focus on the experience.</p>
+    </div>
+  </section>
+
+  <section class="shield-section">
+    <div class="container">
+      <div class="shield-grid">
+        <div>
+          <div class="label">Core protection</div>
+          <h2>Scam Shield AI</h2>
+          <p>India's tourist corridors are designed to extract money from solo travelers. Yaartri's NLP engine flags suspicious language in real-time. Geofencing catches auto-rickshaws taking you off-route. When something looks wrong, you get an alert before it becomes a problem.</p>
+          <div class="trust-items">
+            <div class="trust-item">
+              <h3>Commission-trap NLP</h3>
+              <p>Keywords like "uncle's shop" and "factory visit" trigger instant warnings based on known scam patterns.</p>
+            </div>
+            <div class="trust-item">
+              <h3>Route deviation alerts</h3>
+              <p>GPS geofencing detects when your auto-rickshaw deviates from the optimal route to your destination.</p>
+            </div>
+            <div class="trust-item">
+              <h3>Safe-Hub network</h3>
+              <p>Verified cafes, monuments, and transport hubs. Every meetup happens inside the trust perimeter.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="shield-alert">
+            <div class="sa-badge">ROUTE DEVIATION</div>
+            <p class="sa-text">
+              Your auto-rickshaw has deviated 800m from the optimal route to Amber Fort. This matches a known commission-trap pattern near Johari Bazaar.
+            </p>
+            <div class="sa-actions">
+              <button class="sa-btn sa-btn--primary">View Safe Route</button>
+              <button class="sa-btn sa-btn--ghost">I'm Fine</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div style="max-width:540px;">
+        <div class="label">More protection</div>
+        <h2>Trust infrastructure that works while you explore.</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Smart-Split UPI</h3>
+          <p>When the activity ends, Yaartri handles the math. Costs are split fairly via UPI with zero awkward negotiations.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Anti-Ghosting Law</h3>
+          <p>Commit means commit. Your Yaar Score drops if you ghost. The network self-polices because everyone has skin in the game.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Sentiment Sentinel</h3>
+          <p>NLP monitors group chat intent. High-tension or inappropriate messages trigger private intervention from the agent.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Context-Aware AI</h3>
+          <p>Time-of-day intelligence. Morning walks, evening aartis, night markets. Yaartri knows what's relevant now.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Travel protected. Travel verified.</h2>
+      <a href="/app.html" class="btn-primary">Join the Trust Network</a>
+    </div>
+  </section>
+
+  <!--#include file="partials/footer.html" -->
+</body>
+</html>

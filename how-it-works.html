@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--#include file="partials/head-meta.html" -->
+  <title>How It Works &mdash; Yaartri</title>
+  <style>
+    .page-header { padding: 140px 0 64px; }
+    .page-header h1 { margin-bottom: 16px; }
+    .page-header p { font-size: 18px; color: var(--text-3); max-width: 540px; line-height: 1.75; }
+
+    .process { padding: 0 0 96px; }
+    .process-step {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      padding: 64px 0; border-top: 1px solid var(--border); align-items: start;
+    }
+    .process-step:last-child { border-bottom: 1px solid var(--border); }
+    .process-step:nth-child(even) .process-visual { order: -1; }
+    .process-num {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.08em; margin-bottom: 12px;
+    }
+    .process-step h2 { font-size: 32px; margin-bottom: 16px; }
+    .process-step p { font-size: 16px; color: var(--text-3); line-height: 1.75; }
+    .process-detail {
+      font-family: var(--font-mono); font-size: 12px; color: var(--text-4);
+      margin-top: 16px; letter-spacing: 0.02em;
+    }
+    .process-visual {
+      background: var(--bg-panel); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 32px; min-height: 200px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Trust card demo */
+    .tc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .tc-name { font-size: 18px; font-weight: 600; color: var(--text-1); }
+    .tc-score { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+    .tc-score-val {
+      font-family: var(--font-mono); font-size: 42px; font-weight: 500;
+      color: var(--text-1); line-height: 1;
+    }
+    .tc-score-label { font-size: 12px; color: var(--text-4); text-transform: uppercase; letter-spacing: 0.06em; }
+    .tc-bar { height: 4px; background: var(--bg-surface); border-radius: 2px; margin-bottom: 24px; }
+    .tc-bar-fill { height: 100%; width: 98%; border-radius: 2px; background: linear-gradient(to right, var(--accent), #F59E0B); }
+    .tc-history-label { font-size: 11px; color: var(--text-4); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+    .tc-history { display: flex; gap: 6px; }
+    .tc-dot {
+      width: 28px; height: 28px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tc-dot--ok { background: var(--trust-green-bg); color: var(--trust-green); }
+    .tc-dot--miss { background: rgba(239,68,68,0.08); color: #DC2626; }
+
+    .cta-band {
+      text-align: center; padding: 96px 0;
+    }
+    .cta-band h2 { margin-bottom: 24px; }
+
+    @media (max-width: 900px) {
+      .process-step { grid-template-columns: 1fr; gap: 32px; }
+      .process-step:nth-child(even) .process-visual { order: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!--#include file="partials/nav.html" -->
+
+  <section class="page-header">
+    <div class="container">
+      <div class="label">How Yaartri works</div>
+      <h1>From verified stranger to trusted companion.</h1>
+      <p>Four steps between downloading the app and sharing a boat ride at Dashashwamedh Ghat with people you can actually trust.</p>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="container">
+      <div class="process-step">
+        <div>
+          <div class="process-num">STEP 01</div>
+          <h2>Verify your identity</h2>
+          <p>Aadhaar-Lite identity verification through Zoop. Your data is cryptographically hashed, never stored. You prove you are real without revealing who you are. The process takes less than 30 seconds.</p>
+          <div class="process-detail">Government-grade verification. Zero-knowledge architecture.</div>
+        </div>
+        <div class="process-visual">
+          <div style="text-align:center; color: var(--text-4);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 12px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div style="font-size:13px;">Identity verification flow</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div>
+          <div class="process-num">STEP 02</div>
+          <h2>Find your squad</h2>
+          <p>Yaartri's AI proposes verified groups for shared experiences near you. Boat rides at Dashashwamedh Ghat. Food walks through Kachori Gali. Morning walks at Kashi Vishwanath Corridor. All within Safe-Hub zones.</p>
+          <div class="process-detail">Matched by destination, time, and trust score.</div>
+        </div>
+        <div class="process-visual">
+          <div style="text-align:center; color: var(--text-4);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 12px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <div style="font-size:13px;">Squad discovery interface</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div>
+          <div class="process-num">STEP 03</div>
+          <h2>Commit and go</h2>
+          <p>Join with a handshake commitment. Your Yaar Score tracks every promise kept and every no-show. The network self-polices because everyone has skin in the game.</p>
+          <div class="process-detail">Ghosting penalty: -15 points. Showing up: priceless.</div>
+        </div>
+        <div class="process-visual" style="display:block;">
+          <div class="tc-header">
+            <span class="tc-name">Priya M.</span>
+            <span class="badge-verified">VERIFIED</span>
+          </div>
+          <div class="tc-score">
+            <span class="tc-score-val">98</span>
+            <span class="tc-score-label">Yaar Score</span>
+          </div>
+          <div class="tc-bar"><div class="tc-bar-fill"></div></div>
+          <div class="tc-history-label">Last 7 commitments</div>
+          <div class="tc-history">
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tc-dot tc-dot--miss"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div>
+          <div class="process-num">STEP 04</div>
+          <h2>Yaartri watches</h2>
+          <p>Real-time scam detection runs silently. Route deviation alerts catch commission traps. NLP flags suspicious keywords. The AI agent monitors your safety so you can focus on the experience.</p>
+          <div class="process-detail">Always on. Always vigilant.</div>
+        </div>
+        <div class="process-visual">
+          <div style="text-align:center; color: var(--text-4);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 12px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <div style="font-size:13px;">Real-time protection layer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band section--alt">
+    <div class="container">
+      <h2>Ready to travel with trust?</h2>
+      <a href="/app.html" class="btn-primary">Join the Trust Network</a>
+    </div>
+  </section>
+
+  <!--#include file="partials/footer.html" -->
+</body>
+</html>

@@ -1,722 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0c0a09">
-  <meta name="description" content="Yaartri is an AI-powered trust network that connects Aadhaar-verified solo travelers into accountability-backed squads. Real identity. Real-time protection. Real connections.">
+  <!--#include file="partials/head-meta.html" -->
+  <meta name="description" content="Yaartri is an AI-powered trust network that connects Aadhaar-verified solo travelers into accountability-backed squads across India.">
   <title>Yaartri &mdash; Travel India with people who showed up verified</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-deep: #0c0a09;
-      --bg-panel: #1c1917;
-      --bg-surface: #292524;
-      --bg-elevated: #44403c;
-      --text-1: #fafaf9;
-      --text-2: #d6d3d1;
-      --text-3: #a8a29e;
-      --text-4: #78716c;
-      --accent: #f59e0b;
-      --accent-bright: #fbbf24;
-      --accent-dim: rgba(245, 158, 11, 0.15);
-      --accent-subtle: rgba(245, 158, 11, 0.06);
-      --border: rgba(168, 162, 158, 0.08);
-      --border-h: rgba(168, 162, 158, 0.15);
-      --font-display: 'DM Serif Display', Georgia, serif;
-      --font-body: 'DM Sans', -apple-system, system-ui, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--bg-deep);
-      color: var(--text-2);
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-    /* Grain overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 256px 256px;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.3;
-      mix-blend-mode: overlay;
-    }
+    .hero-content { max-width: 600px; }
+    .hero-content h1 { margin-bottom: 24px; }
+    .hero-body { font-size: 18px; color: var(--text-3); max-width: 520px; margin-bottom: 40px; line-height: 1.75; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* ---- Nav ---- */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 0 24px;
-      transition: background 0.4s, border-color 0.4s;
-      border-bottom: 1px solid transparent;
-    }
-    nav.scrolled {
-      background: rgba(12,10,9,0.88);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom-color: var(--border);
-    }
-    .nav-inner {
-      max-width: 1080px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .nav-brand {
-      display: flex; align-items: center; gap: 10px; text-decoration: none;
-    }
-    .nav-brand span {
-      font-family: var(--font-display); font-size: 20px; color: var(--text-1);
-    }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a {
-      color: var(--text-4); font-size: 13px; font-weight: 500; text-decoration: none;
-      transition: color 0.2s; letter-spacing: 0.01em;
-    }
-    .nav-links a:hover { color: var(--text-2); }
-    .nav-cta {
-      padding: 8px 20px; border-radius: 6px;
-      border: 1px solid var(--border-h); background: transparent;
-      color: var(--text-2); font-size: 13px; font-weight: 500;
-      font-family: var(--font-body);
-      cursor: pointer; transition: all 0.2s; text-decoration: none;
-    }
-    .nav-cta:hover { background: rgba(255,255,255,0.04); color: var(--text-1); }
-    .nav-mobile { display: none; background: none; border: none; color: var(--text-3); cursor: pointer; padding: 4px; }
-
-    /* ---- Layout ---- */
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-    .section-rule {
-      width: 80px; height: 1px; background: var(--border-h); margin: 0 auto;
-    }
-
-    /* ---- Hero ---- */
-    .hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      justify-content: flex-end; padding: 0 0 96px;
-      position: relative; overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(12,10,9,0.2) 0%, rgba(12,10,9,0.5) 50%, rgba(12,10,9,0.95) 85%, var(--bg-deep) 100%),
-        linear-gradient(135deg, rgba(245,158,11,0.08) 0%, transparent 50%),
-        var(--bg-deep);
-      z-index: 0;
-    }
-    .hero-bg::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 80%, rgba(245,158,11,0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(168,162,158,0.03) 0%, transparent 50%);
-    }
-    .hero-content {
-      position: relative; z-index: 1;
-      max-width: 720px;
-    }
-    .hero-label {
-      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--accent); margin-bottom: 28px;
-    }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(40px, 6vw, 72px); font-weight: 400;
-      line-height: 1.1; letter-spacing: -0.02em;
-      color: var(--text-1); margin-bottom: 28px;
-    }
-    .hero-body {
-      font-size: 18px; color: var(--text-3); line-height: 1.7;
-      max-width: 520px; margin-bottom: 44px;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 32px; border-radius: 8px; border: none;
-      background: var(--accent); color: #0c0a09;
-      font-size: 15px; font-weight: 600; font-family: var(--font-body);
-      cursor: pointer; transition: all 0.2s; text-decoration: none;
-    }
-    .btn-primary:hover {
-      background: var(--accent-bright);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 24px rgba(245,158,11,0.25);
-    }
-
-    /* ---- Trust Section ---- */
-    .trust {
-      padding: 160px 0 120px;
-    }
-    .trust-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
-    }
-    .trust-label {
-      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--accent); margin-bottom: 20px;
-    }
-    .trust h2 {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 4vw, 44px); font-weight: 400;
-      line-height: 1.15; color: var(--text-1); margin-bottom: 48px;
-    }
-    .trust-item {
-      border-left: 2px solid var(--border-h); padding: 0 0 0 20px;
-      margin-bottom: 32px;
-    }
-    .trust-item:last-child { margin-bottom: 0; }
-    .trust-item h3 {
-      font-family: var(--font-body); font-size: 15px; font-weight: 600;
-      color: var(--text-1); margin-bottom: 4px;
-    }
-    .trust-item p {
-      font-size: 14px; color: var(--text-3); line-height: 1.6;
-    }
-    /* Trust card -- rendered UI component */
-    .trust-card {
-      background: var(--bg-panel); border: 1px solid var(--border);
-      border-radius: 16px; padding: 32px; position: relative; overflow: hidden;
-    }
-    .trust-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(to right, var(--accent), transparent);
-    }
-    .tc-header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 28px;
-    }
-    .tc-name { font-size: 18px; font-weight: 600; color: var(--text-1); }
-    .tc-badge {
-      font-family: var(--font-mono); font-size: 10px; padding: 3px 10px;
-      border-radius: 4px; background: rgba(34,197,94,0.1);
-      color: #22c55e; letter-spacing: 0.04em; font-weight: 500;
-    }
-    .tc-score {
-      display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px;
-    }
-    .tc-score-val {
-      font-family: var(--font-mono); font-size: 48px; font-weight: 500;
-      color: var(--text-1); letter-spacing: -0.03em; line-height: 1;
-    }
-    .tc-score-label {
-      font-size: 13px; color: var(--text-4); text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .tc-bar {
-      height: 4px; background: var(--bg-surface); border-radius: 2px;
-      margin-bottom: 28px; overflow: hidden;
-    }
-    .tc-bar-fill {
-      height: 100%; width: 98%; border-radius: 2px;
-      background: linear-gradient(to right, var(--accent), var(--accent-bright));
-    }
-    .tc-history-label {
-      font-size: 11px; color: var(--text-4); text-transform: uppercase;
-      letter-spacing: 0.06em; margin-bottom: 12px;
-    }
-    .tc-history {
-      display: flex; gap: 6px;
-    }
-    .tc-dot {
-      width: 28px; height: 28px; border-radius: 6px;
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .pillar { text-align: center; padding: 40px 24px; }
+    .pillar-icon {
+      width: 48px; height: 48px; border-radius: var(--radius-md);
+      background: var(--accent-dim); color: var(--accent);
       display: flex; align-items: center; justify-content: center;
-      font-size: 11px;
+      margin: 0 auto 20px;
     }
-    .tc-dot--ok { background: rgba(34,197,94,0.1); color: #22c55e; }
-    .tc-dot--miss { background: rgba(239,68,68,0.1); color: #ef4444; }
-    .tc-meta {
-      margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between;
-    }
-    .tc-meta-item { font-size: 12px; color: var(--text-4); }
-    .tc-meta-val { color: var(--text-3); font-weight: 500; }
+    .pillar h3 { font-size: 18px; margin-bottom: 8px; }
+    .pillar p { font-size: 14px; color: var(--text-3); line-height: 1.6; }
 
-    /* ---- How It Works (alternating blocks) ---- */
-    .experience { padding: 120px 0 0; }
-    .experience-label {
-      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--accent); margin-bottom: 20px; text-align: center;
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .step { position: relative; }
+    .step-num {
+      font-family: var(--font-display); font-size: 56px; color: var(--text-1);
+      opacity: 0.06; line-height: 1; margin-bottom: 12px;
     }
-    .experience > .container > h2 {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 4vw, 44px); font-weight: 400;
-      line-height: 1.15; color: var(--text-1);
-      text-align: center; margin-bottom: 80px;
-    }
-    .exp-block {
-      display: grid; grid-template-columns: 80px 1fr; gap: 32px;
-      padding: 48px 0; border-top: 1px solid var(--border);
-      align-items: start;
-    }
-    .exp-block:last-child { border-bottom: 1px solid var(--border); }
-    .exp-num {
-      font-family: var(--font-display); font-size: 64px;
-      color: var(--text-1); opacity: 0.07; line-height: 1;
-    }
-    .exp-block h3 {
-      font-family: var(--font-display); font-size: 24px; font-weight: 400;
-      color: var(--text-1); margin-bottom: 8px;
-    }
-    .exp-block p {
-      font-size: 15px; color: var(--text-3); line-height: 1.7;
-      max-width: 540px;
-    }
-    .exp-detail {
-      font-family: var(--font-mono); font-size: 11px; color: var(--text-4);
-      margin-top: 12px; letter-spacing: 0.02em;
-    }
+    .step h3 { font-size: 18px; margin-bottom: 8px; }
+    .step p { font-size: 14px; color: var(--text-3); line-height: 1.6; }
 
-    /* ---- Shield Feature (hero feature) ---- */
-    .shield { padding: 160px 0 80px; }
-    .shield-label {
-      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--accent); margin-bottom: 20px;
+    .city-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 56px; }
+    .city-card {
+      border-radius: var(--radius-lg); border: 1px solid var(--border);
+      overflow: hidden; background: var(--bg-elevated);
+      box-shadow: var(--shadow-sm); transition: box-shadow 0.2s, transform 0.2s;
     }
-    .shield-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+    .city-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+    .city-img {
+      height: 180px; background: var(--bg-surface);
+      display: flex; align-items: flex-end; padding: 20px 24px;
     }
-    .shield h2 {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 4vw, 44px); font-weight: 400;
-      line-height: 1.15; color: var(--text-1); margin-bottom: 20px;
+    .city-card--varanasi .city-img {
+      background: linear-gradient(135deg, #F5F1ED 0%, #E8DFD5 100%);
     }
-    .shield-body {
-      font-size: 16px; color: var(--text-3); line-height: 1.7;
+    .city-card--udaipur .city-img {
+      background: linear-gradient(135deg, #EDE8F5 0%, #D5DFE8 100%);
     }
-    /* Alert notification */
-    .shield-alert {
-      background: var(--bg-panel); border: 1px solid var(--border);
-      border-left: 3px solid var(--accent); border-radius: 12px;
-      padding: 24px; position: relative;
-    }
-    .sa-badge {
-      font-family: var(--font-mono); font-size: 10px; padding: 3px 8px;
-      border-radius: 4px; background: rgba(245,158,11,0.1);
-      color: var(--accent); letter-spacing: 0.04em; font-weight: 500;
-      margin-bottom: 12px; display: inline-block;
-    }
-    .sa-text {
-      font-size: 14px; color: var(--text-2); line-height: 1.6;
-      margin-bottom: 16px;
-    }
-    .sa-actions { display: flex; gap: 8px; }
-    .sa-btn {
-      padding: 8px 16px; border-radius: 6px; font-size: 12px;
-      font-weight: 600; font-family: var(--font-body);
-      cursor: pointer; border: none; transition: all 0.2s;
-    }
-    .sa-btn--primary { background: var(--accent); color: #0c0a09; }
-    .sa-btn--ghost {
-      background: transparent; color: var(--text-3);
-      border: 1px solid var(--border);
-    }
+    .city-img h3 { font-size: 28px; color: var(--text-1); }
+    .city-body { padding: 24px; }
+    .city-body p { font-size: 14px; color: var(--text-3); line-height: 1.6; margin-bottom: 16px; }
+    .city-meta { font-family: var(--font-mono); font-size: 12px; color: var(--text-4); }
 
-    /* Supporting features */
-    .features-compact {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-      background: var(--border); border-radius: 12px; overflow: hidden;
-      margin-top: 0; border: 1px solid var(--border);
-    }
-    .fc-item {
-      background: var(--bg-deep); padding: 28px 24px;
-    }
-    .fc-item h3 {
-      font-size: 14px; font-weight: 600; color: var(--text-1);
-      margin-bottom: 6px;
-    }
-    .fc-item p {
-      font-size: 13px; color: var(--text-4); line-height: 1.5;
-    }
+    .cta-section { text-align: center; padding: 128px 0 96px; }
+    .cta-section h2 { margin-bottom: 24px; }
+    .cta-section .btn-primary { margin-bottom: 16px; }
+    .cta-note { font-size: 13px; color: var(--text-4); }
 
-    /* ---- Manifesto ---- */
-    .manifesto { padding: 160px 0; }
-    .manifesto-label {
-      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--accent); margin-bottom: 48px; text-align: center;
-    }
-    .manifesto-item {
-      text-align: center; max-width: 640px; margin: 0 auto;
-      padding: 48px 0;
-    }
-    .manifesto-item + .manifesto-item {
-      border-top: 1px solid var(--border);
-    }
-    .manifesto-item blockquote {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 4vw, 48px); font-weight: 400;
-      line-height: 1.2; color: var(--text-1); margin-bottom: 16px;
-    }
-    .manifesto-item p {
-      font-size: 16px; color: var(--text-3); line-height: 1.7;
-      max-width: 480px; margin: 0 auto;
-    }
-
-    /* ---- Cities ---- */
-    .cities { padding: 0 0 120px; }
-    .cities-label {
-      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--accent); margin-bottom: 20px;
-    }
-    .cities h2 {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 4vw, 44px); font-weight: 400;
-      line-height: 1.15; color: var(--text-1); margin-bottom: 56px;
-    }
-    .city-band {
-      position: relative; overflow: hidden; border-radius: 12px;
-      margin-bottom: 16px; border: 1px solid var(--border);
-      background: var(--bg-panel); padding: 48px 40px;
-    }
-    .city-band::before {
-      content: '';
-      position: absolute; inset: 0;
-      opacity: 0.06;
-    }
-    .city-band--varanasi::before {
-      background: linear-gradient(135deg, rgba(245,158,11,0.3), transparent 60%);
-      opacity: 1;
-    }
-    .city-band--udaipur::before {
-      background: linear-gradient(135deg, rgba(168,162,158,0.15), transparent 60%);
-      opacity: 1;
-    }
-    .city-band h3 {
-      font-family: var(--font-display); font-size: 32px; font-weight: 400;
-      color: var(--text-1); margin-bottom: 8px; position: relative;
-    }
-    .city-band p {
-      font-size: 14px; color: var(--text-3); position: relative;
-      max-width: 480px;
-    }
-
-    /* ---- Final CTA ---- */
-    .final-cta {
-      padding: 200px 0 120px; text-align: center;
-    }
-    .final-cta h2 {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 5vw, 56px); font-weight: 400;
-      line-height: 1.15; color: var(--text-1); margin-bottom: 32px;
-    }
-    .final-cta .btn-primary { margin-bottom: 20px; }
-    .final-note {
-      font-size: 13px; color: var(--text-4); font-family: var(--font-mono);
-      letter-spacing: 0.01em;
-    }
-
-    /* ---- Footer ---- */
-    footer { padding: 48px 0; border-top: 1px solid var(--border); }
-    .footer-inner {
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .footer-brand { display: flex; align-items: center; gap: 8px; }
-    .footer-brand span {
-      font-family: var(--font-display); font-size: 16px; color: var(--text-4);
-    }
-    .footer-links { display: flex; gap: 28px; list-style: none; }
-    .footer-links a {
-      font-size: 13px; color: var(--text-4); text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--text-2); }
-    .footer-copy { font-size: 12px; color: var(--text-4); }
-
-    /* ---- Responsive ---- */
     @media (max-width: 900px) {
-      .trust-grid, .shield-grid { grid-template-columns: 1fr; gap: 48px; }
-      .features-compact { grid-template-columns: repeat(2, 1fr); }
-      .nav-links { display: none; }
-      .nav-mobile { display: block; }
-      .exp-block { grid-template-columns: 48px 1fr; gap: 20px; }
-      .exp-num { font-size: 48px; }
-    }
-    @media (max-width: 600px) {
-      .hero { padding-bottom: 64px; }
-      .features-compact { grid-template-columns: 1fr; }
-      .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
-      .btn-primary { width: 100%; justify-content: center; }
-      .city-band { padding: 32px 24px; }
+      .pillars, .steps { grid-template-columns: 1fr; gap: 16px; }
+      .city-cards { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+  <!--#include file="partials/nav.html" -->
 
-<!-- Nav -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-brand">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span>Yaartri</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#trust">Trust</a></li>
-      <li><a href="#how">How It Works</a></li>
-      <li><a href="#shield">Protection</a></li>
-      <li><a href="#manifesto">Manifesto</a></li>
-    </ul>
-    <a href="/app.html" class="nav-cta">Enter App</a>
-    <button class="nav-mobile" aria-label="Menu">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-  </div>
-</nav>
+  <!-- Hero -->
+  <section class="section section--hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="label">Aadhaar-verified trust network</div>
+        <h1>Travel India with people who showed up verified.</h1>
+        <p class="hero-body">
+          Yaartri connects identity-verified solo travelers into accountability-backed squads for shared experiences across India.
+        </p>
+        <div class="hero-actions">
+          <a href="/app.html" class="btn-primary">
+            Join the Trust Network
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="/how-it-works.html" class="btn-secondary">See How It Works</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-label">Aadhaar-verified trust network</div>
-      <h1>Travel India with people who showed up verified.</h1>
-      <p class="hero-body">
-        Yaartri connects identity-verified solo travelers into accountability-backed squads for shared experiences across India.
-      </p>
+  <!-- Trust Pillars -->
+  <section class="section section--alt">
+    <div class="container">
+      <div style="text-align:center; max-width:600px; margin:0 auto;">
+        <div class="label">Why Yaartri</div>
+        <h2>Trust infrastructure for solo travelers.</h2>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Identity verified</h3>
+          <p>Every Yaar is Aadhaar-verified. Your data is hashed, never stored. Zero-knowledge proof of who you are.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Accountability-backed</h3>
+          <p>Your Yaar Score tracks reliability. Ghost a commitment and the network remembers. Show up and earn trust.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>AI-protected</h3>
+          <p>Real-time scam detection. Route deviation alerts. Commission-trap NLP. The AI agent has your back.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works (condensed) -->
+  <section class="section">
+    <div class="container">
+      <div style="text-align:center; max-width:600px; margin:0 auto;">
+        <div class="label">How it works</div>
+        <h2>Three steps to your first squad.</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Verify your identity</h3>
+          <p>30-second Aadhaar-Lite verification. Your data is cryptographically hashed, never stored.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Find your squad</h3>
+          <p>Yaartri proposes verified groups for shared experiences near you. Boat rides, food walks, monument visits.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Show up and explore</h3>
+          <p>Commit with a handshake. The AI agent monitors safety while you focus on the experience.</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:48px;">
+        <a href="/how-it-works.html" class="btn-secondary">Learn more about how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pilot Cities -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="label">Pilot cities</div>
+      <h2>Starting where trust matters most.</h2>
+      <div class="city-cards">
+        <a href="/cities.html" class="city-card city-card--varanasi" style="text-decoration:none">
+          <div class="city-img"><h3>Varanasi</h3></div>
+          <div class="city-body">
+            <p>The spiritual capital. High-density tourism corridors, complex ghat networks, and India's most intense scam ecosystem.</p>
+            <div class="city-meta">8 Safe-Hubs &middot; 2 active corridors</div>
+          </div>
+        </a>
+        <a href="/cities.html" class="city-card city-card--udaipur" style="text-decoration:none">
+          <div class="city-img"><h3>Udaipur</h3></div>
+          <div class="city-body">
+            <p>The city of lakes. Heritage walks, boat sharing, and palace circuits where group economics beat solo pricing.</p>
+            <div class="city-meta">4 Safe-Hubs &middot; Lake corridor active</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Trust is earned. Start here.</h2>
       <a href="/app.html" class="btn-primary">
         Join the Trust Network
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
+      <p class="cta-note">Aadhaar verification required. Limited pilot: Varanasi &amp; Udaipur.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Trust -->
-<section class="trust" id="trust">
-  <div class="container">
-    <div class="trust-grid">
-      <div>
-        <div class="trust-label">How trust works</div>
-        <h2>Every person you meet is Aadhaar-verified.</h2>
-        <div class="trust-item">
-          <h3>Identity hashed, never stored</h3>
-          <p>Zero-knowledge Aadhaar verification. We prove you are real without storing who you are. Your hash exists; your data doesn't.</p>
-        </div>
-        <div class="trust-item">
-          <h3>Yaar Score tracks reliability</h3>
-          <p>Every commitment honored raises your score. Every ghost drops it. The network knows who shows up.</p>
-        </div>
-        <div class="trust-item">
-          <h3>Ghosting has real consequences</h3>
-          <p>No-shows trigger score penalties and reduced visibility for future squads. Your word is your bond.</p>
-        </div>
-      </div>
-      <div>
-        <div class="trust-card">
-          <div class="tc-header">
-            <span class="tc-name">Priya M.</span>
-            <span class="tc-badge">VERIFIED</span>
-          </div>
-          <div class="tc-score">
-            <span class="tc-score-val">98</span>
-            <span class="tc-score-label">Yaar Score</span>
-          </div>
-          <div class="tc-bar"><div class="tc-bar-fill"></div></div>
-          <div class="tc-history-label">Last 7 commitments</div>
-          <div class="tc-history">
-            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="tc-dot tc-dot--miss"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
-            <div class="tc-dot tc-dot--ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-          </div>
-          <div class="tc-meta">
-            <div class="tc-meta-item">Joined <span class="tc-meta-val">Mar 2026</span></div>
-            <div class="tc-meta-item">Squads <span class="tc-meta-val">12</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-rule"></div>
-
-<!-- How It Works -->
-<section class="experience" id="how">
-  <div class="container">
-    <div class="experience-label">How Yaartri works</div>
-    <h2>From verified stranger to trusted companion.</h2>
-    <div class="exp-block">
-      <div class="exp-num">01</div>
-      <div>
-        <h3>Verify once</h3>
-        <p>Aadhaar-Lite identity verification through Zoop. Your data is cryptographically hashed, never stored. You prove you are real without revealing who you are.</p>
-        <div class="exp-detail">&#60; 30 seconds. Government-grade verification.</div>
-      </div>
-    </div>
-    <div class="exp-block">
-      <div class="exp-num">02</div>
-      <div>
-        <h3>Find your squad</h3>
-        <p>Yaartri's AI proposes verified groups for shared experiences near you. Boat rides at Dashashwamedh Ghat. Food walks through Kachori Gali. Morning walks at Kashi Vishwanath Corridor. All within Safe-Hub zones.</p>
-        <div class="exp-detail">Matched by destination, time, and trust score.</div>
-      </div>
-    </div>
-    <div class="exp-block">
-      <div class="exp-num">03</div>
-      <div>
-        <h3>Commit and go</h3>
-        <p>Join with a handshake commitment. Your Yaar Score tracks every promise kept and every no-show. The network self-polices because everyone has skin in the game.</p>
-        <div class="exp-detail">Ghosting penalty: -15 points. Showing up: priceless.</div>
-      </div>
-    </div>
-    <div class="exp-block">
-      <div class="exp-num">04</div>
-      <div>
-        <h3>Yaartri watches</h3>
-        <p>Real-time scam detection runs silently. Route deviation alerts catch commission traps. NLP flags suspicious keywords. The AI agent monitors your safety so you can focus on the experience.</p>
-        <div class="exp-detail">Always on. Always vigilant. Zero false peace.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div style="padding: 80px 0;"><div class="section-rule"></div></div>
-
-<!-- Shield (hero feature) -->
-<section class="shield" id="shield">
-  <div class="container">
-    <div class="shield-label">Core protection</div>
-    <div class="shield-grid">
-      <div>
-        <h2>Scam Shield AI</h2>
-        <p class="shield-body">
-          Commission traps, route deviations, closed-monument scams. India's tourist corridors are designed to extract money from solo travelers. Yaartri's NLP engine flags suspicious language in real-time. Geofencing catches auto-rickshaws taking you off-route. When something looks wrong, you get an alert before it becomes a problem.
-        </p>
-      </div>
-      <div>
-        <div class="shield-alert">
-          <div class="sa-badge">ROUTE DEVIATION</div>
-          <p class="sa-text">
-            Your auto-rickshaw has deviated 800m from the optimal route to Amber Fort. This matches a known commission-trap pattern near Johari Bazaar.
-          </p>
-          <div class="sa-actions">
-            <button class="sa-btn sa-btn--primary">View Safe Route</button>
-            <button class="sa-btn sa-btn--ghost">I'm Fine</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Supporting features -->
-<div class="container" style="padding-bottom: 120px;">
-  <div class="features-compact">
-    <div class="fc-item">
-      <h3>Safe-Hub Map</h3>
-      <p>Verified cafes, monuments, and transport hubs. Every meetup inside the trust perimeter.</p>
-    </div>
-    <div class="fc-item">
-      <h3>Smart-Split UPI</h3>
-      <p>Activity ends, Yaartri handles the math. No awkward bill negotiations.</p>
-    </div>
-    <div class="fc-item">
-      <h3>Anti-Ghosting</h3>
-      <p>Commit means commit. Your score drops if you ghost. The network remembers.</p>
-    </div>
-    <div class="fc-item">
-      <h3>Context-Aware</h3>
-      <p>Morning walks, evening aartis, night markets. Yaartri knows what's relevant now.</p>
-    </div>
-  </div>
-</div>
-
-<div class="section-rule"></div>
-
-<!-- Manifesto -->
-<section class="manifesto" id="manifesto">
-  <div class="container">
-    <div class="manifesto-label">The Yaartri Manifesto</div>
-    <div class="manifesto-item">
-      <blockquote>Respect the RSVP.</blockquote>
-      <p>A commitment made is a commitment kept. Ghost a squad, and your Yaar Score drops. The network self-polices because everyone has skin in the game.</p>
-    </div>
-    <div class="manifesto-item">
-      <blockquote>Default to transparency.</blockquote>
-      <p>Surprises are for birthdays, not travel logistics. Be explicit about what you seek. The Sentiment Sentinel watches for ambiguity.</p>
-    </div>
-    <div class="manifesto-item">
-      <blockquote>Leave nobody behind.</blockquote>
-      <p>Empty seat at the table? Open it to the verified network. Empty seat in the rickshaw? Share the ride and split the cost.</p>
-    </div>
-    <div class="manifesto-item">
-      <blockquote>Protect the sanctuary.</blockquote>
-      <p>Safety is a collective responsibility. Meet at Safe-Hubs. Stay in the trust perimeter. The network is only as strong as its boundaries.</p>
-    </div>
-  </div>
-</section>
-
-<div class="section-rule"></div>
-
-<!-- Pilot Cities -->
-<section class="cities" id="cities" style="padding-top: 120px;">
-  <div class="container">
-    <div class="cities-label">Pilot corridor</div>
-    <h2>Starting where trust matters most.</h2>
-    <div class="city-band city-band--varanasi">
-      <h3>Varanasi</h3>
-      <p>The spiritual capital. High-density tourism corridors, complex ghat networks, and India's most intense scam ecosystem. 8 Safe-Hubs verified. 2 active corridors mapped.</p>
-    </div>
-    <div class="city-band city-band--udaipur">
-      <h3>Udaipur</h3>
-      <p>The city of lakes. Heritage walks, boat sharing, and palace circuits where group economics beat solo pricing. 4 Safe-Hubs verified. Lake corridor active.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Final CTA -->
-<section class="final-cta">
-  <div class="container">
-    <h2>Trust is earned.<br>Start here.</h2>
-    <a href="/app.html" class="btn-primary">
-      Join the Trust Network
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
-    <p class="final-note">Aadhaar verification required. Limited pilot: Varanasi &amp; Udaipur.</p>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#78716c" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span>Yaartri</span>
-      </div>
-      <ul class="footer-links">
-        <li><a href="#manifesto">Manifesto</a></li>
-        <li><a href="#">Safety</a></li>
-        <li><a href="#">Privacy</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-      <span class="footer-copy">&copy; 2026 Yaartri</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-  var nav = document.getElementById('nav');
-  window.addEventListener('scroll', function() {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
-</script>
+  <!--#include file="partials/footer.html" -->
 </body>
 </html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--#include file="partials/head-meta.html" -->
+  <title>Pilot Cities &mdash; Yaartri</title>
+  <style>
+    .page-header { padding: 140px 0 64px; }
+    .page-header h1 { margin-bottom: 16px; }
+    .page-header p { font-size: 18px; color: var(--text-3); max-width: 540px; line-height: 1.75; }
+
+    .city-section { padding: 0 0 96px; }
+    .city-block {
+      border: 1px solid var(--border); border-radius: var(--radius-xl);
+      overflow: hidden; margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .city-hero {
+      height: 240px; padding: 32px 40px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .city-hero--varanasi {
+      background: linear-gradient(135deg, #F5F1ED 0%, #E8DFD5 50%, #D4C4B0 100%);
+    }
+    .city-hero--udaipur {
+      background: linear-gradient(135deg, #EDE8F5 0%, #D5DFE8 50%, #C4D0E0 100%);
+    }
+    .city-hero h2 { font-size: 40px; color: var(--text-1); margin-bottom: 4px; }
+    .city-hero p { font-size: 14px; color: var(--text-3); }
+    .city-content { padding: 32px 40px; }
+    .city-content > p { font-size: 16px; color: var(--text-2); line-height: 1.75; margin-bottom: 32px; }
+
+    .hub-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .hub-card {
+      padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-md);
+      background: var(--bg-panel);
+    }
+    .hub-card h4 {
+      font-family: var(--font-body); font-size: 14px; font-weight: 600;
+      color: var(--text-1); margin-bottom: 4px;
+    }
+    .hub-card p { font-size: 13px; color: var(--text-4); }
+    .hub-label {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      color: var(--text-4); letter-spacing: 0.06em; margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .expansion { text-align: center; padding: 96px 0; }
+    .expansion h2 { margin-bottom: 16px; }
+    .expansion p { font-size: 16px; color: var(--text-3); max-width: 480px; margin: 0 auto 32px; }
+
+    @media (max-width: 900px) {
+      .hub-grid { grid-template-columns: 1fr; }
+      .city-content { padding: 24px; }
+      .city-hero { padding: 24px; height: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <!--#include file="partials/nav.html" -->
+
+  <section class="page-header">
+    <div class="container">
+      <div class="label">Pilot corridor</div>
+      <h1>Starting where trust matters most.</h1>
+      <p>We launched in India's highest-friction tourism corridors. Dense, chaotic, beautiful places where trust infrastructure makes the biggest difference.</p>
+    </div>
+  </section>
+
+  <section class="city-section">
+    <div class="container">
+      <div class="city-block">
+        <div class="city-hero city-hero--varanasi">
+          <h2>Varanasi</h2>
+          <p>The spiritual capital of India</p>
+        </div>
+        <div class="city-content">
+          <p>High-density tourism corridors, complex ghat networks, and India's most intense scam ecosystem. From Dashashwamedh Ghat to Kashi Vishwanath, every corner has a story and a potential trap. Yaartri maps the safe paths.</p>
+          <div class="hub-label">Verified Safe-Hubs</div>
+          <div class="hub-grid">
+            <div class="hub-card">
+              <h4>Dashashwamedh Ghat Zone</h4>
+              <p>Verified monument &middot; 500m geofence</p>
+            </div>
+            <div class="hub-card">
+              <h4>Brown Bread Bakery</h4>
+              <p>Verified cafe &middot; 50m geofence</p>
+            </div>
+            <div class="hub-card">
+              <h4>Kashi Vishwanath Corridor</h4>
+              <p>Verified monument &middot; 300m geofence</p>
+            </div>
+            <div class="hub-card">
+              <h4>Blue Lassi Shop Area</h4>
+              <p>Verified food district &middot; 200m geofence</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="city-block">
+        <div class="city-hero city-hero--udaipur">
+          <h2>Udaipur</h2>
+          <p>The city of lakes</p>
+        </div>
+        <div class="city-content">
+          <p>Heritage walks, boat sharing, and palace circuits where group economics beat solo pricing. The lake corridor connects Pichola to Fateh Sagar through verified pathways.</p>
+          <div class="hub-label">Verified Safe-Hubs</div>
+          <div class="hub-grid">
+            <div class="hub-card">
+              <h4>City Palace Group Entry</h4>
+              <p>Verified monument &middot; 300m geofence</p>
+            </div>
+            <div class="hub-card">
+              <h4>Lake Pichola Boat Stand</h4>
+              <p>Verified transport hub &middot; 200m geofence</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="expansion section--alt">
+    <div class="container">
+      <div class="label">Coming next</div>
+      <h2>Jaipur, Rishikesh, Goa.</h2>
+      <p>We're mapping Safe-Hub corridors in India's next highest-traffic solo travel destinations.</p>
+      <a href="/app.html" class="btn-primary">Join the waitlist</a>
+    </div>
+  </section>
+
+  <!--#include file="partials/footer.html" -->
+</body>
+</html>
